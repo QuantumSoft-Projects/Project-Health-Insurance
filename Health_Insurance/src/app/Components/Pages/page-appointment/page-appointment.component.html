@@ -1,0 +1,94 @@
+<!-- Benefits Section -->
+<section class="benefits-section">
+  <div class="container">
+    <h3>Why Schedule a Health Insurance Appointment?</h3>
+    <ul>
+      <li>Personalized plan recommendations</li>
+      <li>One-on-one consultation with experts</li>
+      <li>Faster claim assistance</li>
+      <li>Free health check-up options with selected plans</li>
+      <li>Guidance on policy renewals and upgrades</li>
+      <li>Support for claim documentation and processing</li>
+    </ul>
+  </div>
+</section>
+ 
+<!-- Appointment Form Section -->
+<section class="appointment-section">
+  <div class="container">
+    <h2 class="section-title">Book Your Health Insurance Appointment</h2>
+ 
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" formControlName="fullName" placeholder="John Doe" required />
+          <div *ngIf="appointmentForm.get('fullName')?.invalid && appointmentForm.get('fullName')?.touched" class="error-message">
+            Full name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" formControlName="email" placeholder="john@example.com" required />
+          <div *ngIf="appointmentForm.get('email')?.invalid && appointmentForm.get('email')?.touched" class="error-message">
+            Valid email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" placeholder="+1 234 567 890" required />
+          <div *ngIf="appointmentForm.get('phoneNumber')?.invalid && appointmentForm.get('phoneNumber')?.touched" class="error-message">
+            Phone number is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="insurancePlan">Insurance Plan</label>
+          <select id="insurancePlan" formControlName="insurancePlan" required>
+            <option value="">Select a plan</option>
+            <option value="Basic Health Cover">Basic Health Cover</option>
+            <option value="Family Floater">Family Floater</option>
+            <option value="Senior Citizen Plan">Senior Citizen Plan</option>
+            <option value="Critical Illness Cover">Critical Illness Cover</option>
+          </select>
+          <div *ngIf="appointmentForm.get('insurancePlan')?.invalid && appointmentForm.get('insurancePlan')?.touched" class="error-message">
+            Please select a plan
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="preferredDoctor">Preferred Doctor</label>
+          <input type="text" id="preferredDoctor" formControlName="preferredDoctor" placeholder="Dr. Smith / Any" />
+        </div>
+        <div class="form-group">
+          <label for="appointmentDate">Appointment Date</label>
+          <input type="date" id="appointmentDate" formControlName="appointmentDate" required />
+          <div *ngIf="appointmentForm.get('appointmentDate')?.invalid && appointmentForm.get('appointmentDate')?.touched" class="error-message">
+            Date is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="preferredTime">Preferred Time</label>
+          <input type="time" id="preferredTime" formControlName="preferredTime" required />
+          <div *ngIf="appointmentForm.get('preferredTime')?.invalid && appointmentForm.get('preferredTime')?.touched" class="error-message">
+            Time is required
+          </div>
+        </div>
+        <div class="form-group full-width">
+          <label for="additionalNotes">Additional Notes</label>
+          <textarea id="additionalNotes" rows="3" formControlName="additionalNotes" placeholder="Mention any symptoms or insurance ID"></textarea>
+        </div>
+      </div>
+      <div class="submit-btn">
+        <button type="submit" [disabled]="appointmentForm.invalid || isSubmitting">
+          <span *ngIf="!isSubmitting">Confirm Appointment</span>
+          <span *ngIf="isSubmitting">Processing...</span>
+        </button>
+      </div>
+ 
+      <!-- Success Message -->
+      <div *ngIf="isSubmitted" class="success-message">
+        Your appointment has been successfully booked! We'll contact you shortly.
+      </div>
+    </form>
+  </div>
+</section>
+ 

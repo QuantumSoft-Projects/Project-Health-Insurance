@@ -1,0 +1,223 @@
+.terms-wrapper {
+    font-family: 'Segoe UI', sans-serif;
+    color: #37d1e9 !important;
+    background: #f4f9fc;
+    padding-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+}
+ 
+/* Banner Section */
+.banner {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #5fff92;
+    background: -webkit-linear-gradient(to right, #ff5f6d, #ffc3a0);
+    background: linear-gradient(to right, #ff5f6d, #ffc3a0);
+    border-bottom: 3px solid #ffffff; /* Added border for separation */
+}
+ 
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+ 
+.banner-text {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    animation: fadeInUp 1.5s ease-out;
+    z-index: 10;
+}
+ 
+.banner-text h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: linear-gradient(to left, #00bcd4, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease-out;
+}
+ 
+.banner-text h1:hover {
+    transform: scale(1.1); /* Slightly enlarges text on hover */
+}
+ 
+.banner-text p {
+    font-size: 1.4rem;
+    margin-top: 12px;
+    color: #fffbf2;
+    font-weight: 500;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Content Container */
+.container {
+    max-width: 1240px;
+    margin: auto;
+    padding: 50px 20px;
+}
+ 
+/* Last Updated */
+.last-updated {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    color: #999;
+    text-align: right;
+    font-style: italic;
+    opacity: 0.8;
+}
+ 
+/* Cards Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+    animation: fadeInUp 1s ease-out;
+}
+ 
+/* Card Styles */
+/* Card Styles */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    padding: 30px 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #2b4ee7 ; /* Blue border */
+    background: #fefefe;
+}
+ 
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    cursor: pointer;
+    border: 2px solid #2b4ee7; /* Blue border on hover */
+}
+ 
+.card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: #00529b;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    word-break: break-word;
+}
+ 
+.card img {
+    margin-top: 25px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+ 
+.card img:hover {
+    transform: scale(1.06);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+ 
+/* Footer Note */
+.footer-note {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 60px;
+    background: #f4f9fc;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.5s ease-out;
+    font-weight: 600;
+}
+ 
+.footer-note a {
+    color: #0077cc;
+    text-decoration: none;
+}
+ 
+.footer-note a:hover {
+    text-decoration: underline;
+}
+ 
+/* FadeIn Animation */
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+ 
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .banner-text {
+        bottom: 25px;
+        left: 20px;
+        transform: translateX(0);
+    }
+ 
+    .banner-text h1 {
+        font-size: 2.8rem;
+    }
+ 
+    .banner-text p {
+        font-size: 1.1rem;
+    }
+ 
+    .card {
+        padding: 25px 20px;
+    }
+ 
+    .card h2 {
+        font-size: 1.6rem;
+        gap: 8px;
+    }
+ 
+    .card img {
+        height: 180px;
+    }
+}
+ 
+/* For the specific 'Customer Responsibilities' case, align it properly */
+.customer-responsibilities h2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+ 
+.customer-responsibilities h2 span {
+    display: block;
+    font-weight: 700;
+    color: #00529b;
+    font-size: 1.5rem;
+    text-transform: uppercase; /* Adds more emphasis */
+    letter-spacing: 1px; /* Adds spacing between letters */
+}
+ 
+ 

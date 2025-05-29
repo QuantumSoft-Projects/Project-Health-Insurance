@@ -1,0 +1,87 @@
+<form (ngSubmit)="loginAdmin()" #adminForm="ngForm" *ngIf="!showForgotPassword && !showResetPassword">
+  <div class="mb-3">
+    <label for="adminEmail" class="form-label">Email</label>
+    <input
+      type="email"
+      id="adminEmail"
+      class="form-control"
+      [(ngModel)]="email"
+      name="email"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="adminPassword" class="form-label">Password</label>
+    <input
+      type="password"
+      id="adminPassword"
+      class="form-control"
+      [(ngModel)]="password"
+      name="password"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login as Admin</button>
+  <button type="button" class="btn btn-link" (click)="toggleForgotPassword()">Forgot Password?</button>
+</form>
+
+<form (ngSubmit)="sendOtp()" #forgotForm="ngForm" *ngIf="showForgotPassword && !showResetPassword">
+  <div class="mb-3">
+    <label for="forgotEmail" class="form-label">Enter your email to receive OTP</label>
+    <input
+      type="email"
+      id="forgotEmail"
+      class="form-control"
+      [(ngModel)]="forgotEmail"
+      name="forgotEmail"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Send OTP</button>
+  <button type="button" class="btn btn-link" (click)="toggleForgotPassword()">Back to Login</button>
+</form>
+
+<!-- Reset password form -->
+<form (ngSubmit)="resetPassword()" #resetForm="ngForm" *ngIf="showResetPassword">
+  <div class="mb-3">
+    <label for="otp" class="form-label">Enter OTP</label>
+    <input
+      type="text"
+      id="otp"
+      class="form-control"
+      [(ngModel)]="otp"
+      name="otp"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="newPassword" class="form-label">New Password</label>
+    <input
+      type="password"
+      id="newPassword"
+      class="form-control"
+      [(ngModel)]="newPassword"
+      name="newPassword"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="confirmPassword" class="form-label">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      class="form-control"
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Reset Password</button>
+  <button type="button" class="btn btn-link" (click)="showResetPassword = false">Back to Forgot Password</button>
+</form>

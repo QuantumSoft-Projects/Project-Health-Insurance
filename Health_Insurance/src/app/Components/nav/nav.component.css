@@ -1,0 +1,98 @@
+.quote-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-modal-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+/* Style the Login/Signup switch */
+.form-check.form-switch {
+display: flex;
+align-items: center;
+margin-top: 6px;
+}
+
+.form-check-input {
+width: 45px;
+height: 25px;
+background-color: #dcdcdc;
+border-color: #ccc;
+cursor: pointer;
+transition: 0.3s;
+margin-right: 8px;
+}
+
+.form-check-input:checked {
+background-color: #0d6efd; /* Bootstrap Primary */
+border-color: #0d6efd;
+}
+
+.form-check-input:focus {
+box-shadow: none;
+border-color: #0d6efd;
+}
+
+.form-check-label {
+font-weight: 500;
+color: #333;
+font-size: 16px;
+cursor: pointer;
+}
+
+/* Optional hover effect */
+.form-check-input:hover {
+background-color: #0b5ed7;
+}
+
+
+/* Styling for the Login / Signup Button */
+.btn-outline-primary {
+border: 2px solid #007bff;
+color: #007bff;
+font-weight: bold;
+padding: 10px 20px;
+border-radius: 25px;
+transition: all 0.3s ease;
+}
+
+/* On hover, change background and text color */
+.btn-outline-primary:hover {
+background-color: #007bff;
+color: white;
+border-color: #0056b3;
+}
+
+/* On focus (when clicked), make the button stand out */
+.btn-outline-primary:focus {
+outline: none;
+box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+/* Responsive styles - button adjusts for smaller screens */
+@media (max-width: 768px) {
+.btn-outline-primary {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+}
+

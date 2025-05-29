@@ -1,0 +1,408 @@
+/* Base Styles */
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: #2d3748;
+  line-height: 1.6;
+  background-color: #f7fafc; /* Light background for contrast */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1rem; /* Increased padding for better spacing */
+}
+
+/* Typography */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a365d;
+  text-align: center;
+  margin-bottom: 1.5rem; /* Increased margin for better separation */
+  line-height: 1.2;
+  text-transform: uppercase; /* Added text transform for emphasis */
+  letter-spacing: 1px; /* Added letter spacing for a modern look */
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  text-align: center;
+  color: #4a5568;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-weight: 400; /* Light font weight for subtlety */
+}
+
+h2, h3, h4 {
+  color: #1a365d;
+  margin-bottom: 1rem;
+}
+
+/* Insurance Highlights */
+.insurance-highlights {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.highlight-card {
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow for better depth */
+  border: 2px solid #bee3f8; /* Light border for a soft, elegant effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+}
+
+.highlight-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Increased hover shadow for more impact */
+  border-color: #3182ce; /* Darker border color on hover */
+}
+
+.highlight-card h3 {
+  font-size: 2.5rem;
+  color: #2b6cb0;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.highlight-card p {
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Features Section */
+.insurance-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e2e8f0; /* Subtle border around each feature card */
+  transition: all 0.3s ease;
+  border-top: 4px solid #4299e1;
+  overflow: hidden; /* Added to ensure content stays inside the card */
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: #3182ce; /* Darker border on hover */
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: #ebf8ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.feature-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.feature-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #2b6cb0;
+  font-weight: bold;
+}
+
+.feature-card p {
+  color: #4a5568;
+}
+
+/* Plan Types */
+.plan-types {
+  margin: 5rem 0;
+}
+
+.plan-types h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.plans-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 2px solid #e2e8f0; /* Light border around the plan cards */
+  position: relative;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: #bee3f8;
+}
+
+.plan-card h3 {
+  color: #2b6cb0;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ebf8ff;
+}
+
+.plan-card ul {
+  margin-bottom: 1.5rem;
+}
+
+.plan-card li {
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.plan-card li::before {
+  content: "✓";
+  color: #48bb78;
+  position: absolute;
+  left: 0;
+}
+
+.best-for {
+  font-style: italic;
+  color: #718096;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #cbd5e0;
+}
+
+/* Testimonials */
+.testimonials-section {
+  margin: 5rem 0;
+}
+
+.testimonials-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testimonials-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0; /* Light border around testimonials */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card::before {
+  content: "“"; /* Added quote symbol */
+  font-family: serif;
+  font-size: 5rem;
+  color: #bee3f8;
+  position: absolute;
+  top: -20px;
+  left: 1rem;
+  line-height: 1;
+  z-index: -1; /* Positioned behind the content */
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.author {
+  font-weight: 600;
+  color: #2b6cb0;
+}
+
+/* FAQ Section */
+.faq-section {
+  margin: 5rem 0;
+}
+
+.faq-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.5rem;
+}
+
+.faq-item h4 {
+  color: #2b6cb0;
+  font-size: 1.1rem;
+}
+
+.faq-item p {
+  color: #4a5568;
+  margin-top: 0.5rem;
+}
+
+/* CTA Section */
+.cta-container {
+  margin-top: 4rem;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  border: 2px solid #bee3f8; /* Soft border around CTA */
+}
+
+.cta-card h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.cta-card p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #3182ce;
+}
+
+.btn-primary:hover {
+  background: #ebf8ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .insurance-highlights {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .highlight-card {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .feature-card, .plan-card, .testimonial-card {
+    padding: 1.5rem;
+  }
+
+  .cta-card {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -1,0 +1,379 @@
+/* Global Styles */
+.car-insurance-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #eef2f5 100%);
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+  }
+ 
+  .container {
+    max-width: 1140px;
+    margin: auto;
+    position: relative;
+  }
+ 
+  .section-title {
+    font-size: 2.8rem;
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+ 
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #00bcd4);
+    border-radius: 2px;
+  }
+ 
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+ 
+  /* Insurance Features Grid */
+  .insurance-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+  }
+ 
+  .feature-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+ 
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #007bff, #00bcd4);
+    transition: height 0.3s ease;
+  }
+ 
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+ 
+  .feature-card:hover::before {
+    height: 10px;
+  }
+ 
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: transparent;
+    background: linear-gradient(135deg, #007bff 0%, #00bcd4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: transform 0.3s ease;
+  }
+ 
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1);
+  }
+ 
+  .feature-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #222;
+    font-weight: 600;
+  }
+ 
+  .feature-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+ 
+  /* FAQ Section */
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #0d47a1;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+ 
+  .faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #007bff, #00bcd4);
+    border-radius: 2px;
+  }
+ 
+  .faq-container {
+    max-width: 800px;
+    margin: auto;
+  }
+ 
+  .faq-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 5px solid #007bff;
+  }
+ 
+  .faq-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: #f8faff;
+  }
+ 
+  .faq-item h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #0d47a1;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+ 
+  .faq-item h4::before {
+    content: '▸';
+    margin-right: 10px;
+    color: #007bff;
+    font-size: 1.2rem;
+  }
+ 
+  .faq-item p {
+    margin-top: 15px;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding-left: 20px;
+  }
+ 
+  /* CTA Section */
+  .cta-container {
+    margin-top: 80px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 60px 40px;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .cta-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(30deg);
+  }
+ 
+  .cta-container h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #0d47a1;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .cta-container p {
+    color: #444;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+ 
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .cta-buttons .btn {
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+ 
+  .btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #00bcd4 100%);
+    color: white;
+  }
+ 
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+  }
+ 
+  .btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+  }
+ 
+  .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+  }
+ 
+  .btn-outline {
+    background: white;
+    border: 2px solid #007bff;
+    color: #007bff;
+    transition: all 0.3s ease;
+  }
+ 
+  .btn-outline:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+  }
+ 
+  .btn-dark {
+    background: linear-gradient(135deg, #343a40 0%, #212529 100%);
+    color: white;
+  }
+ 
+  .btn-dark:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 58, 64, 0.3);
+  }
+ 
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2.2rem;
+    }
+   
+    .section-title::after {
+      bottom: -8px;
+      height: 3px;
+    }
+   
+    .insurance-features {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+   
+    .feature-card {
+      padding: 25px 20px;
+    }
+   
+    .cta-container {
+      padding: 50px 30px;
+    }
+   
+    .cta-container h3 {
+      font-size: 1.8rem;
+    }
+   
+    .cta-buttons .btn {
+      padding: 12px 24px;
+    }
+  }
+ 
+  @media (max-width: 480px) {
+    .car-insurance-section {
+      padding: 60px 15px;
+    }
+   
+    .section-title {
+      font-size: 1.8rem;
+    }
+   
+    .section-subtitle {
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+   
+    .feature-icon {
+      font-size: 2.5rem;
+    }
+   
+    .faq-item {
+      padding: 20px 15px;
+    }
+   
+    .cta-container {
+      padding: 40px 20px;
+      border-radius: 20px;
+    }
+   
+    .cta-container h3 {
+      font-size: 1.5rem;
+    }
+   
+    .cta-buttons {
+      flex-direction: column;
+      gap: 15px;
+    }
+   
+    .cta-buttons .btn {
+      width: 100%;
+    }
+  }
+ 
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+ 
+  .feature-card, .faq-item, .cta-container {
+    animation: fadeIn 0.6s ease forwards;
+  }
+ 
+  .feature-card:nth-child(1) { animation-delay: 0.1s; }
+  .feature-card:nth-child(2) { animation-delay: 0.2s; }
+  .feature-card:nth-child(3) { animation-delay: 0.3s; }
+  .feature-card:nth-child(4) { animation-delay: 0.4s; }
+ 

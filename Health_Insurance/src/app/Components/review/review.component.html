@@ -1,0 +1,201 @@
+<div class="review-container">
+  <!-- Header -->
+  <div class="review-header">
+    <h2><i class="fas fa-shield-alt"></i> Health Insurance Reviews</h2>
+    <p class="subtitle">Read genuine customer experiences with our health insurance plans</p>
+  </div>
+ 
+  <!-- Summary Section -->
+  <div class="review-summary">
+    <div class="average-rating">
+      <div class="rating-value">{{ averageRating.toFixed(1) }}</div>
+      <div class="rating-stars">
+        <span *ngFor="let star of [1,2,3,4,5]">
+          <i class="fas fa-star" [ngClass]="{'filled': star <= averageRating}"></i>
+        </span>
+      </div>
+      <p>Based on {{ totalReviews }} reviews</p>
+    </div>
+ 
+    <div class="rating-distribution">
+      <div class="distribution-row" *ngFor="let rating of [5,4,3,2,1]">
+        <span class="star-label">{{ rating }} Star</span>
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="getRatingPercentage(rating)"></div>
+        </div>
+        <span class="count">{{ getRatingCount(rating) }}</span>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Filters -->
+  <div class="review-filters">
+    <button class="filter-btn"
+            *ngFor="let filter of filters"
+            [class.active]="activeFilter === filter"
+            (click)="setFilter(filter)">
+      {{ filter }}
+    </button>
+  </div>
+ 
+  <!-- Review List -->
+  <div class="review-list">
+    <div class="review-card" *ngFor="let review of filteredReviews">
+      <div class="user-info">
+        <div class="avatar">{{ getUserInitials(review.userName) }}</div>
+        <div class="user-details">
+          <h4>{{ review.userName }}</h4>
+          <p class="review-date">{{ review.date | date:'mediumDate' }}</p>
+        </div>
+      </div>
+ 
+      <div class="review-content">
+        <div class="review-rating">
+          <span *ngFor="let star of [1,2,3,4,5]">
+            <i class="fas fa-star" [ngClass]="{'filled': star <= review.rating}"></i>
+          </span>
+          <span class="review-category">{{ review.category }}</span>
+        </div>
+        <h3 class="review-title">{{ review.title }}</h3>
+        <p class="review-text">{{ review.content }}</p>
+      </div>
+ 
+      <div class="review-actions">
+        <button class="action-btn helpful" (click)="markHelpful(review)">
+          <i class="far fa-thumbs-up"></i> Helpful ({{ review.helpfulCount }})
+        </button>
+        <button class="action-btn">
+          <i class="far fa-comment"></i> Comment
+        </button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Pagination -->
+  <div class="review-pagination">
+    <button class="page-btn" *ngFor="let page of getPageNumbers()"
+            [class.active]="page === currentPage"
+            (click)="goToPage(page)">
+      {{ page }}
+    </button>
+  </div>
+ 
+  <!-- Review Form Modal -->
+  <div class="review-form-container" *ngIf="showReviewForm">
+    <div class="review-form-overlay" (click)="closeReviewForm()"></div>
+    <div class="review-form-content">
+      <button class="close-btn" (click)="closeReviewForm()">
+        <i class="fas fa-times"></i>
+      </button>
+ 
+      <h2><i class="fas fa-edit"></i> Share Your Experience</h2>
+      <p class="form-subtitle">Your feedback helps us improve our services</p>
+ 
+      <form #reviewForm="ngForm" (ngSubmit)="submitReview()">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="user">Your Name</label>
+          <input type="text" id="user" name="userName"
+          [(ngModel)]="reviewData.userName"
+          #userName="ngModel"
+          placeholder="Enter your name"
+          required minlength="3"
+          pattern="^[a-zA-Z ]+$" />
+          <div class="error" *ngIf="userName.invalid && userName.touched">
+            <small *ngIf="userName.errors?.['required']">Name is required.</small>
+            <small *ngIf="userName.errors?.['minlength']">Minimum 3 characters required.</small>
+            <small *ngIf="userName.errors?.['pattern']">Only alphabets and spaces allowed.</small>
+          </div>
+         
+        </div>
+ 
+        <!-- Rating -->
+        <div class="form-group">
+          <label>Your Rating</label>
+          <div class="rating-input">
+            <span *ngFor="let star of [1,2,3,4,5]"
+                  (click)="setReviewRating(star)"
+                  [class.filled]="selectedRating >= star">★</span>
+          </div>
+          <div class="error" *ngIf="!selectedRating && reviewForm.submitted">
+            <small>Please select a rating.</small>
+          </div>
+        </div>
+ 
+        <!-- Comment -->
+        <div class="form-group">
+          <label for="comment">Your Review</label>
+          <textarea id="comment" name="comment"
+                    [(ngModel)]="reviewData.comment"
+                    #comment="ngModel"
+                    placeholder="Share details of your experience..."
+                    required minlength="10"></textarea>
+          <div class="error" *ngIf="comment.invalid && comment.touched">
+            <small *ngIf="comment.errors?.['required']">Review is required.</small>
+            <small *ngIf="comment.errors?.['minlength']">Minimum 10 characters required.</small>
+          </div>
+        </div>
+ 
+        <!-- Policy and Hospital -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="policy">Select Policy</label>
+            <select id="policy" name="policy"
+                    [(ngModel)]="reviewData.policy.id"
+                    #policy="ngModel" required>
+              <option value="" disabled selected>Choose your policy</option>
+              <option *ngFor="let policy of policies" [value]="policy.id">
+                {{ policy.name }} ({{ policy.id }})
+              </option>
+            </select>
+            <div class="error" *ngIf="policy.invalid && policy.touched">
+              <small>Please select a policy.</small>
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label for="hospital">Hospital (if applicable)</label>
+            <select id="hospital" name="hospital"
+                    [(ngModel)]="reviewData.hospital.id">
+              <option value="" disabled selected>Select hospital</option>
+              <option *ngFor="let hospital of hospitals" [value]="hospital.id">
+                {{ hospital.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+ 
+        <!-- Doctor -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="doctor">Doctor (if applicable)</label>
+            <select id="doctor" name="doctor"
+                    [(ngModel)]="reviewData.doctor.id">
+              <option value="" disabled selected>Select doctor</option>
+              <option *ngFor="let doctor of doctors" [value]="doctor.id">
+                Dr. {{ doctor.name }} ({{ doctor.specialization }})
+              </option>
+            </select>
+          </div>
+        </div>
+ 
+        <!-- Actions -->
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" (click)="closeReviewForm()">Cancel</button>
+          <button type="submit" class="submit-btn" [disabled]="!reviewForm.form.valid">Submit Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+ 
+  <!-- Add Review CTA -->
+  <div class="add-review">
+    <h3>Share Your Experience</h3>
+    <p>Your review helps others make informed decisions</p>
+    <button class="add-review-btn" (click)="openReviewForm()">
+      <i class="fas fa-pencil-alt"></i> Write a Review
+    </button>
+  </div>
+</div>
+  
+ 

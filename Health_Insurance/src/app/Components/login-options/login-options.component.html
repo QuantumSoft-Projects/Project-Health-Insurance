@@ -1,0 +1,45 @@
+<div class="container py-5">
+  <h2 class="text-center mb-4">Login Portal</h2>
+
+  <!-- Toggle Buttons with Styling -->
+  <div class="d-flex justify-content-center mb-4 toggle-btns">
+    <label>
+      <input
+        type="radio"
+        name="loginToggle"
+        [(ngModel)]="selectedRole"
+        value="superadmin"
+      />
+      <span [ngClass]="{ 'active-toggle': selectedRole === 'superadmin' }">Superadmin</span>
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="loginToggle"
+        [(ngModel)]="selectedRole"
+        value="admin"
+      />
+      <span [ngClass]="{ 'active-toggle': selectedRole === 'admin' }">Admin</span>
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="loginToggle"
+        [(ngModel)]="selectedRole"
+        value="user"
+      />
+      <span [ngClass]="{ 'active-toggle': selectedRole === 'user' }">User</span>
+    </label>
+  </div>
+
+  <!-- Show Login Forms Conditionally -->
+  <div *ngIf="selectedRole === 'superadmin'">
+    <app-superadmin-login></app-superadmin-login>
+  </div>
+  <div *ngIf="selectedRole === 'admin'">
+    <app-admin-login></app-admin-login>
+  </div>
+  <div *ngIf="selectedRole === 'user'">
+    <app-user-login></app-user-login>
+  </div>
+</div>

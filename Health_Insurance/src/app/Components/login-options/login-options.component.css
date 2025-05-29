@@ -1,0 +1,56 @@
+.toggle-btns {
+  gap: 20px;
+}
+
+.toggle-btns label {
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.toggle-btns input[type="radio"] {
+  display: none;
+}
+
+.toggle-btns span {
+  padding: 10px 25px;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #007bff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+}
+
+.toggle-btns span:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.active-toggle {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+/* Add fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+app-superadmin-login,
+app-admin-login,
+app-user-login {
+  animation: fadeIn 0.4s ease-in-out;
+  margin-top: 20px;
+}

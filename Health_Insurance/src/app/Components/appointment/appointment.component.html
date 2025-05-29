@@ -1,0 +1,64 @@
+<!-- Appointment Start -->
+<div class="container-fluid appointment my-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <!-- Left Side Content -->
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
+                <h1 class="display-6 text-white mb-5">Secure Your Health with Trusted Insurance Plans</h1>
+                <p class="text-white mb-5">
+                    Your health deserves the best protection. Our award-winning health insurance plans offer comprehensive coverage, expert support, and peace of mind. Whether it's routine checkups or unexpected emergencies, we're here to support your journey toward better health.
+                </p>
+                <div class="bg-white rounded p-3">
+                    <div class="d-flex align-items-center bg-primary rounded p-3">
+                        <img class="flex-shrink-0 rounded-circle me-3" src="assets/img/profile.jpg" alt="">
+                        <h5 class="text-white mb-0">Call Us: +012 345 6789</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Form -->
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="bg-white rounded p-5">
+                    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+                        <div class="row g-3">
+                          <div class="col-sm-6">
+                            <div class="form-floating">
+                              <input type="datetime-local" class="form-control" id="appointmentDateTime" formControlName="appointmentDateTime" required>
+                              <label for="appointmentDateTime">Appointment Date & Time</label>
+                            </div>
+                          </div>
+                      
+                          <div class="col-sm-6">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="concern" formControlName="concern" placeholder="Concern" required>
+                              <label for="concern">Concern</label>
+                            </div>
+                          </div>
+                      
+                          <div class="col-sm-6">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="userId" formControlName="userId" required>
+                              <label for="userId">User ID</label>
+                            </div>
+                          </div>
+                      
+                          <div class="col-sm-6">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="doctorId" formControlName="doctorId" required>
+                              <label for="doctorId">Doctor ID</label>
+                            </div>
+                          </div>
+                      
+                          <div class="col-12">
+                            <button class="btn btn-primary py-3 px-5" type="submit" [disabled]="appointmentForm.invalid">Book Appointment</button>
+                          </div>
+                        </div>
+                      </form>
+                      
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Appointment End -->

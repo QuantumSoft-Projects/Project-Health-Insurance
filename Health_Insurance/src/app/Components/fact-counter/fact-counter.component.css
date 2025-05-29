@@ -1,0 +1,181 @@
+/* fact-counter.component.css */
+ 
+/* Main container styling */
+.facts {
+    padding: 60px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+   
+  /* Left text section */
+  .facts-text h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #ffffff;
+  }
+   
+  .facts-text p {
+    font-size: 1.1rem;
+    color: #dddddd;
+    line-height: 1.6;
+  }
+   
+  /* Explore Plans button */
+  .btn-secondary {
+    background-color: #ff8800;
+    border: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+   
+  .btn-secondary:hover {
+    background-color: #e67300;
+  }
+   
+  /* Counter section titles and descriptions */
+  .facts-counter h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ff8800;
+    transition: all 0.4s ease;
+    text-shadow: 1px 1px 4px rgba(255, 136, 0, 0.5);
+  }
+   
+  .facts-counter h1:hover {
+    transform: scale(1.08);
+  }
+   
+  .facts-counter p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    margin-top: 8px;
+  }
+   
+  /* Individual counter box */
+  .counter-box {
+    background-color: rgba(131, 227, 227, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 8px 25px rgba(255, 136, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+    z-index: 1;
+  }
+   
+  /* Counter box hover effect */
+  .counter-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(255, 136, 0, 0.25);
+  }
+   
+  /* Shine animation overlay */
+  .counter-box::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 136, 0, 0.2), transparent 70%);
+    transform: rotate(25deg);
+    animation: shine 8s linear infinite;
+    pointer-events: none;
+  }
+   
+  /* Counter animation */
+  @keyframes shine {
+    0% {
+      transform: rotate(0deg) translate(-50%, -50%);
+    }
+    100% {
+      transform: rotate(360deg) translate(-50%, -50%);
+    }
+  }
+   
+  .counter-box h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #fff  !important;
+    margin: 0;
+    animation: fadeInUp 1s ease;
+  }
+   
+  .counter-box p {
+    font-size: 2.5rem;
+    color: #fff !important;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+   
+  /* Fade up animation */
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+   
+  /* Tablet and medium screen responsiveness */
+  @media (max-width: 768px) {
+    .facts-text h1 {
+      font-size: 2rem;
+    }
+   
+    .facts-counter h1 {
+      font-size: 2.2rem;
+    }
+   
+    .facts-counter p {
+      font-size: 1rem;
+    }
+   
+    .counter-box {
+      padding: 25px 15px;
+      margin-bottom: 20px;
+    }
+   
+    .counter-box h1 {
+      font-size: 2.2rem;
+    }
+   
+    .counter-box p {
+      font-size: 1rem;
+    }
+  }
+   
+  /* Extra small devices (phones) responsiveness */
+  @media (max-width: 576px) {
+    .facts-text h1 {
+      font-size: 1.6rem;
+    }
+   
+    .facts-text p {
+      font-size: 1rem;
+    }
+   
+    .btn-secondary {
+      padding: 10px 20px;
+      font-size: 0.95rem;
+    }
+   
+    .counter-box h1 {
+      font-size: 2rem;
+    }
+   
+    .counter-box p {
+      font-size: 0.95rem;
+    }
+  }
+   
+   

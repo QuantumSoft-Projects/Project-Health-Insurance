@@ -1,0 +1,76 @@
+<!-- Health Insurance Services Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    
+    <!-- Buttons -->
+    <div class="button-rectangle d-flex justify-content-between align-items-center">
+      <button
+        class="btn px-4 py-2 rounded-pill"
+        [class.btn-primary]="activeSection === 'coverage'"
+        [class.btn-outline-primary]="activeSection !== 'coverage'"
+        (click)="toggleSection('coverage')">
+        <i class="fas fa-shield-virus me-2"></i> Coverage
+      </button>
+
+      <button
+        class="btn px-4 py-2 rounded-pill"
+        [class.btn-primary]="activeSection === 'benefits'"
+        [class.btn-outline-primary]="activeSection !== 'benefits'"
+        (click)="toggleSection('benefits')">
+        <i class="fas fa-hand-holding-heart me-2"></i> Prime Benefits
+      </button>
+    </div>
+
+    <br><br>
+
+    <!-- Coverage Section -->
+    <div *ngIf="activeSection === 'coverage'" class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6" *ngFor="let service of coverageServices">
+        <div class="service-item">
+          <div class="title-description">
+            <div class="service-icon">
+              <img [src]="service.icon" [alt]="service.title" />
+            </div>
+            <h4>{{ service.title }}</h4>
+            <p>{{ service.description }}</p>
+          </div>
+          <a class="btn btn-light px-3 read-more-btn" href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buy Now -->
+    <div *ngIf="activeSection === 'coverage'" class="text-center mt-4">
+      <a href="#" class="btn btn-success px-5 py-2 rounded-pill">
+        <i class="fas fa-cart-plus me-2"></i> Buy Now
+      </a>
+    </div>
+
+    <br><br>
+
+    <!-- Benefits Section -->
+    <div *ngIf="activeSection === 'benefits'" class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6" *ngFor="let benefit of primeBenefits">
+        <div class="service-item">
+          <div class="title-description">
+            <div class="service-icon">
+              <img [src]="benefit.icon" [alt]="benefit.title" />
+            </div>
+            <h4>{{ benefit.title }}</h4>
+            <p>{{ benefit.description }}</p>
+          </div>
+          <a class="btn btn-light px-3 read-more-btn" href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Get Covered -->
+    <div *ngIf="activeSection === 'benefits'" class="text-center mt-4">
+      <a href="#" class="btn btn-success px-5 py-2 rounded-pill">
+        <i class="fas fa-check-circle me-2"></i> Get Covered
+      </a>
+    </div>
+
+  </div>
+</div>
+<!-- Health Insurance Services End -->

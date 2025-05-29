@@ -1,0 +1,76 @@
+<section class="life-insurance-section">
+  <div class="container">
+    <h1 class="section-title">{{ title }}</h1>
+    <p class="section-subtitle">{{ subtitle }}</p>
+
+    <div class="insurance-highlights">
+      <div class="highlight-card">
+        <h3>5000+</h3>
+        <p>Families Protected</p>
+      </div>
+      <div class="highlight-card">
+        <h3>99.1%</h3>
+        <p>Claim Settlement Ratio</p>
+      </div>
+      <div class="highlight-card">
+        <h3>24/7</h3>
+        <p>Customer Support</p>
+      </div>
+    </div>
+
+    <div class="insurance-features">
+      <div class="feature-card" *ngFor="let benefit of benefits">
+        
+        <h4>{{ benefit.title }}</h4>
+        <p>{{ benefit.description }}</p>
+      </div>
+    </div>
+
+    <div class="plan-types">
+      <h2>Our Insurance Plans</h2>
+      <div class="plans-container">
+        <div class="plan-card" *ngFor="let plan of planTypes">
+          <h3>{{ plan.name }}</h3>
+          <ul>
+            <li *ngFor="let feature of plan.features">{{ feature }}</li>
+          </ul>
+          <p class="best-for">Best for: {{ plan.bestFor }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-section">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonials-container">
+        <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+          <p class="quote">"{{ testimonial.quote }}"</p>
+          <p class="author">{{ testimonial.name }}, {{ testimonial.role }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+          <h4 (click)="toggleFaq(i)">{{ faq.question }}</h4>
+          <p *ngIf="selectedFaq === i">{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="cta-container">
+      <div class="cta-card">
+        <h3>Ready to Secure Your Family's Future?</h3>
+        <p>Get personalized advice from our certified insurance advisors.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary" (click)="getQuote()">Get a Free Quote</button>
+          <button class="btn btn-secondary" (click)="viewPlans()">Compare Plans</button>
+          <button class="btn btn-outline" (click)="contactAdvisor()">Talk to Advisor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

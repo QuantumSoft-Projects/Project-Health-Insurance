@@ -1,0 +1,262 @@
+<div class="admin-dashboard">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="logo">
+      <i class="fas fa-user-shield"></i> Health Insurance Admin Panel
+    </div>
+    <div class="search-container">
+      <input type="text" placeholder="Search..." class="search-input" />
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="top-icons">
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </div>
+
+  <!-- Sidebar + Main -->
+  <div class="main-layout">
+    <div class="sidebar">
+      <ul>
+        <li (click)="handleSidebarClick('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</li>
+        <li (click)="handleSidebarClick('manageUsers')"><i class="fas fa-users-cog"></i> Manage Users</li>
+        <li (click)="handleSidebarClick('manageClaims')"><i class="fas fa-clipboard-check"></i> Manage Claims</li>
+        <li (click)="handleSidebarClick('policies')"><i class="fas fa-file-medical"></i> Policies</li>
+        <li (click)="handleSidebarClick('appointments')"><i class="fas fa-calendar-check"></i> Appointments</li>
+
+        <li (click)="handleSidebarClick('hospitals')"><i class="fas fa-hospital"></i> Hospitals & Providers</li>
+        <li (click)="handleSidebarClick('payments')"><i class="fas fa-credit-card"></i> Payments</li>
+        <li (click)="handleSidebarClick('settings')"><i class="fas fa-cogs"></i> Settings</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+
+      <!-- Show different content based on the selected section -->
+
+      <!-- Dashboard Section -->
+      <div *ngIf="activeSection === 'dashboard'" class="dashboard-cards">
+        <div class="card">
+          <h3>👥 Total Users</h3>
+          <p>{{ dashboardData.totalUsers }}</p>
+        </div>
+        <div class="card">
+          <h3>📑 Total Claims</h3>
+          <p>{{ dashboardData.totalClaims }}</p>
+        </div>
+        <div class="card">
+          <h3>💳 Payments Received</h3>
+          <p>{{ dashboardData.paymentsReceived }}</p>
+        </div>
+        <div class="card">
+          <h3>📊 Reports</h3>
+          <p>{{ dashboardData.reports }}</p>
+        </div>
+      </div>
+
+      <!-- Manage Users Section -->
+      <div *ngIf="activeSection === 'manageUsers'">
+        <!-- Add User Form -->
+        <form (ngSubmit)="addUser()">
+          <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" [(ngModel)]="newUser.username" name="username" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" [(ngModel)]="newUser.email" name="email" required />
+          </div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status" [(ngModel)]="newUser.status" name="status">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <button type="submit">Add User</button>
+        </form>
+
+        <p>Total Users: {{ usersData.totalUsers }}</p>
+        <p>Active Users: {{ usersData.activeUsers }}</p>
+        <p>Inactive Users: {{ usersData.inactiveUsers }}</p>
+      </div>
+
+      <!-- Manage Claims Section -->
+      <div *ngIf="activeSection === 'manageClaims'">
+        <!-- Add Claim Form -->
+        <form (ngSubmit)="addClaim()">
+          <div>
+            <label for="claimName">Claim Name</label>
+            <input type="text" id="claimName" [(ngModel)]="newClaim.claimName" name="claimName" required />
+          </div>
+          <div>
+            <label for="claimStatus">Claim Status</label>
+            <select id="claimStatus" [(ngModel)]="newClaim.status" name="claimStatus">
+              <option value="approved">Approved</option>
+              <option value="pending">Pending</option>
+              <option value="denied">Denied</option>
+            </select>
+          </div>
+          <button type="submit">Add Claim</button>
+        </form>
+
+        <p>Total Claims: {{ claimsData.totalClaims }}</p>
+        <p>Approved Claims: {{ claimsData.approvedClaims }}</p>
+        <p>Pending Claims: {{ claimsData.pendingClaims }}</p>
+      </div>
+
+      <!-- Policies Section -->
+      <div *ngIf="activeSection === 'policies'">
+        <!-- Add Policy Form -->
+        <form (ngSubmit)="addPolicy()">
+          <div>
+            <label for="policyName">Policy Name</label>
+            <input type="text" id="policyName" [(ngModel)]="newPolicy.policyName" name="policyName" required />
+          </div>
+          <div>
+            <label for="policyType">Policy Type</label>
+            <input type="text" id="policyType" [(ngModel)]="newPolicy.policyType" name="policyType" required />
+          </div>
+          <div>
+            <label for="policyStatus">Status</label>
+            <select id="policyStatus" [(ngModel)]="newPolicy.status" name="policyStatus">
+              <option value="active">Active</option>
+              <option value="expired">Expired</option>
+            </select>
+          </div>
+          <button type="submit">Add Policy</button>
+        </form>
+
+        <p>Total Policies: {{ policiesData.totalPolicies }}</p>
+        <p>Active Policies: {{ policiesData.activePolicies }}</p>
+        <p>Expired Policies: {{ policiesData.expiredPolicies }}</p>
+      </div>
+
+      <!-- Hospitals & Providers Section -->
+      <div *ngIf="activeSection === 'hospitals'">
+        <!-- Add Hospital Form -->
+        <form (ngSubmit)="addHospital()">
+          <div>
+            <label for="hospitalName">Hospital Name</label>
+            <input type="text" id="hospitalName" [(ngModel)]="newHospital.hospitalName" name="hospitalName" required />
+          </div>
+          <div>
+            <label for="hospitalLocation">Location</label>
+            <input type="text" id="hospitalLocation" [(ngModel)]="newHospital.location" name="hospitalLocation" required />
+          </div>
+          <div>
+            <label for="hospitalStatus">Status</label>
+            <select id="hospitalStatus" [(ngModel)]="newHospital.status" name="hospitalStatus">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <button type="submit">Add Hospital</button>
+        </form>
+
+        <p>Total Hospitals: {{ hospitalsData.totalHospitals }}</p>
+        <p>Active Hospitals: {{ hospitalsData.activeHospitals }}</p>
+        <p>Inactive Hospitals: {{ hospitalsData.inactiveHospitals }}</p>
+      </div>
+
+
+
+<!-- Appointments Section -->
+<div *ngIf="activeSection === 'appointments'">
+  <h2>Pending Appointments</h2>
+
+  <!-- Loading or Error messages -->
+  <div *ngIf="isLoading">Loading appointments...</div>
+  <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+
+  <!-- Appointment table -->
+  <table *ngIf="appointments && appointments.length > 0 && !isLoading" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Appointment ID</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Concern</th>
+        <th>Status</th>
+        <th>Confirm</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appt of appointments">
+        <td>{{ appt.id }}</td>
+        <td>{{ appt.userName }}</td>
+        <td>{{ appt.email }}</td>
+        <td>{{ appt.concern }}</td>
+        <td>{{ appt.status }}</td>
+        <td>
+          <button *ngIf="appt.status === 'PENDING'" (click)="confirmAppointment(appt)">Confirm</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No appointments fallback -->
+  <div *ngIf="!isLoading && appointments.length === 0">
+    <p>No appointments found.</p>
+  </div>
+</div>
+
+
+
+      <!-- Payments Section -->
+      <div *ngIf="activeSection === 'payments'">
+        <!-- Add Payment Form -->
+        <form (ngSubmit)="addPayment()">
+          <div>
+            <label for="paymentAmount">Payment Amount</label>
+            <input type="number" id="paymentAmount" [(ngModel)]="newPayment.amount" name="paymentAmount" required />
+          </div>
+          <div>
+            <label for="paymentStatus">Payment Status</label>
+            <select id="paymentStatus" [(ngModel)]="newPayment.status" name="paymentStatus">
+              <option value="completed">Completed</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+          <button type="submit">Add Payment</button>
+        </form>
+
+        <p>Total Payments: {{ paymentsData.totalPayments }}</p>
+        <p>Completed Payments: {{ paymentsData.completedPayments }}</p>
+        <p>Pending Payments: {{ paymentsData.pendingPayments }}</p>
+      </div>
+
+      <!-- Settings Section -->
+      <div *ngIf="activeSection === 'settings'">
+        <!-- Update Settings Form -->
+        <form (ngSubmit)="updateSettings()">
+          <div>
+            <label for="siteName">Site Name</label>
+            <input type="text" id="siteName" [(ngModel)]="settingsData.siteName" name="siteName" required />
+          </div>
+          <div>
+            <label for="theme">Theme</label>
+            <select id="theme" [(ngModel)]="settingsData.theme" name="theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+          <div>
+            <label for="language">Language</label>
+            <select id="language" [(ngModel)]="settingsData.language" name="language">
+              <option value="en">English</option>
+              <option value="es">Hindi</option>
+            </select>
+          </div>
+          <button type="submit">Save Settings</button>
+        </form>
+
+        <p>Site Name: {{ settingsData.siteName }}</p>
+        <p>Theme: {{ settingsData.theme }}</p>
+        <p>Language: {{ settingsData.language }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,288 @@
+/* Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #222;
+    background-color: #fefefe;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    color: #0077b6;
+    transition: color 0.3s ease;
+  }
+  h1:hover, h2:hover, h3:hover {
+    color: #005f8a;
+  }
+ 
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+  }
+  .bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+    animation: zoomIn 10s infinite alternate;
+  }
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    animation: fadeInDown 2s ease;
+  }
+  .center-image {
+    width: 120px;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+  }
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0, 119, 182, 0.8);
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 12px;
+    animation: pulseGlow 3s infinite;
+  }
+ 
+  /* Info Section */
+  .info-section, .side-info-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    gap: 30px;
+    align-items: center;
+    animation: fadeIn 1.5s ease-in;
+  }
+  .info-img img, .side-img img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: pulse 5s infinite;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+    cursor: pointer;
+  }
+  .info-img img:hover, .side-img img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+  }
+  .info-text, .side-text {
+    flex: 1;
+    min-width: 300px;
+    animation: fadeInUp 2s ease;
+  }
+  .info-text h2, .side-text h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .info-text p, .side-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+ 
+  /* Card Section */
+  .card-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 20px;
+    gap: 20px;
+    background-color: #f8f9fa;
+    animation: fadeInUp 2s ease;
+  }
+  .card {
+    background-color: #ffffff;
+    padding: 25px;
+    width: 300px;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    animation: fadeIn 2s ease;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  .card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+    animation: pulse 5s infinite;
+  }
+  .card img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+  }
+  .card h3 {
+    margin-bottom: 10px;
+    color: #0077b6;
+  }
+  .card p {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+ 
+  /* Points Section */
+  .points-section {
+    padding: 40px 30px;
+    background: #e0f7fa;
+    animation: fadeIn 2s ease;
+  }
+  .points-section h2 {
+    margin-bottom: 15px;
+  }
+  .points-section ul {
+    padding-left: 20px;
+    font-size: 1rem;
+    color: #333;
+  }
+  .points-section li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+    animation: fadeInUp 1s ease;
+  }
+  .points-section li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #0077b6;
+    font-weight: bold;
+  }
+ 
+  /* CTA Section */
+  .cta-section {
+    padding: 50px 20px;
+    background-color: #0077b6;
+    color: white;
+    text-align: center;
+    animation: fadeInUp 2s ease;
+  }
+  .cta-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .cta-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+  .cta-content button {
+    background: #ffffff;
+    color: #0077b6;
+    padding: 12px 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .cta-content button:hover {
+    background: #005f8a;
+    color: white;
+  }
+ 
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+      padding: 8px 20px;
+    }
+    .card-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    .info-section,
+    .side-info-section {
+      flex-direction: column;
+    }
+  }
+ 
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes zoomIn {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+    100% {
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+ 
+ 

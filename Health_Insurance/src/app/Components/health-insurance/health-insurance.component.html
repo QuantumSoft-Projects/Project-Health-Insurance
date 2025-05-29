@@ -1,0 +1,83 @@
+<section class="health-insurance-section container py-5">
+    <!-- Title & Subtitle -->
+  <div class="d-flex justify-content-center align-items-center">
+    <h2 class="section-title mb-3">
+      <span class="title-icon"><i class="fas fa-heartbeat"></i></span>
+      {{ title }}
+    </h2>
+  </div>
+  <p class="section-subtitle text-center mb-5">{{ subtitle }}</p>
+
+  <!-- Features Grid -->
+  <div class="row g-4 insurance-features">
+    <div class="col-md-6 col-lg-3" *ngFor="let feature of features">
+      <div class="feature-card p-4 shadow-sm rounded text-center h-100 bg-white">
+        <h4 class="feature-title mb-2">{{ feature.title }}</h4>
+        <ul class="feature-description text-muted list-unstyled">
+          <li>{{ feature.description }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <!-- Pricing Plans -->
+    <div class="pricing-plans mt-5">
+      <h3 class="text-center mb-4">Choose Your Plan</h3>
+      <div class="row g-4">
+        <div class="col-md-6" *ngFor="let plan of plans">
+          <div class="plan-card p-4 border rounded h-100">
+            <h4 class="plan-name">{{ plan.name }}</h4>
+            <h2 class="plan-price my-3">{{ plan.price }}</h2>
+            <p class="plan-coverage"><strong>Coverage:</strong> {{ plan.coverage }}</p>
+            <ul class="plan-features">
+              <li *ngFor="let feature of plan.features">{{ feature }}</li>
+            </ul>
+            <button class="btn btn-primary mt-3" (click)="selectPlan(plan.name)">Select Plan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Testimonials -->
+    <div class="testimonials mt-5 bg-light p-4 rounded">
+      <h3 class="text-center mb-4">What Our Customers Say</h3>
+      <div class="row">
+        <div class="col-md-6" *ngFor="let testimonial of testimonials">
+          <div class="testimonial-card p-3 mb-3">
+            <div class="rating mb-2">
+              ★ {{ testimonial.rating }}/5
+            </div>
+            <p class="comment">"{{ testimonial.comment }}"</p>
+            <p class="author">- {{ testimonial.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- FAQs -->
+    <div class="faq-section mt-5">
+      <h3 class="text-center mb-4">Frequently Asked Questions</h3>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                    [attr.data-bs-target]="'#collapse' + i">
+              {{ faq.question }}
+            </button>
+          </h2>
+          <div [id]="'collapse' + i" class="accordion-collapse collapse" 
+               data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              {{ faq.answer }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- CTA Section -->
+    <div class="cta-card text-center mt-5 p-4 p-md-5 bg-primary text-white rounded-4 shadow">
+      <h3 class="mb-3">Get the Right Plan, Right Now</h3>
+      <p class="mb-4">Compare top policies, customize your benefits, and secure your health today.</p>
+      <button class="btn btn-light btn-lg px-4" (click)="getQuote()">Get a Free Quote</button>
+    </div>
+  </section>

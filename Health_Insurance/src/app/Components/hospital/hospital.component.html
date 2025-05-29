@@ -1,0 +1,139 @@
+<!-- add-hospital.component.html -->
+<form (ngSubmit)="addHospital()" #f="ngForm" class="p-4 max-w-lg mx-auto space-y-4">
+
+  <h2 class="text-xl font-semibold">Add Hospital</h2>
+
+  <input
+    [(ngModel)]="hospitalData.name"
+    name="name"
+    required
+    placeholder="Name"
+    class="w-full p-2 border rounded"
+  />
+
+  <input
+    [(ngModel)]="hospitalData.address"
+    name="address"
+    required
+    placeholder="Address"
+    class="w-full p-2 border rounded"
+  />
+
+  <div class="grid grid-cols-2 gap-2">
+    <input
+      [(ngModel)]="hospitalData.city"
+      name="city"
+      required
+      placeholder="City"
+      class="p-2 border rounded"
+    />
+    <input
+      [(ngModel)]="hospitalData.state"
+      name="state"
+      required
+      placeholder="State"
+      class="p-2 border rounded"
+    />
+  </div>
+
+  <div class="grid grid-cols-2 gap-2">
+    <input
+      [(ngModel)]="hospitalData.postalCode"
+      name="postalCode"
+      required
+      placeholder="Postal Code"
+      class="p-2 border rounded"
+    />
+    <input
+      [(ngModel)]="hospitalData.contactNumber"
+      name="contactNumber"
+      required
+      placeholder="Contact Number"
+      class="p-2 border rounded"
+    />
+  </div>
+
+  <input
+    type="email"
+    [(ngModel)]="hospitalData.email"
+    name="email"
+    required
+    placeholder="Email"
+    class="w-full p-2 border rounded"
+  />
+
+  <input
+    [(ngModel)]="hospitalData.website"
+    name="website"
+    placeholder="Website"
+    class="w-full p-2 border rounded"
+  />
+
+  <div class="flex gap-4">
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="hospitalData.isNetworkHospital"
+        name="isNetworkHospital"
+      />
+      Network Hospital
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="hospitalData.icuAvailable"
+        name="icuAvailable"
+      />
+      ICU Available
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="hospitalData.isActive"
+        name="isActive"
+      />
+      Active
+    </label>
+  </div>
+
+  <input
+    type="number"
+    [(ngModel)]="hospitalData.availableBeds"
+    name="availableBeds"
+    required
+    placeholder="Available Beds"
+    class="w-full p-2 border rounded"
+  />
+
+  <!-- Specialties -->
+  <div>
+    <div class="flex gap-2 mb-2">
+      <input
+        [(ngModel)]="specialtyInput"
+        name="specialtyInput"
+        placeholder="Add specialty"
+        class="flex-1 p-2 border rounded"
+      />
+      <button type="button" (click)="addSpecialty()" class="px-3 py-1 bg-blue-600 text-white rounded">
+        Add
+      </button>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span
+        *ngFor="let s of hospitalData.specialties"
+        class="px-2 py-1 bg-gray-200 rounded inline-flex items-center"
+      >
+        {{ s }}
+        <button type="button" (click)="removeSpecialty(s)" class="ml-1 font-bold text-red-500">&times;</button>
+      </span>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="!f.form.valid"
+    class="w-full py-2 bg-blue-600 text-white rounded"
+  >
+    Add Hospital
+  </button>
+</form>

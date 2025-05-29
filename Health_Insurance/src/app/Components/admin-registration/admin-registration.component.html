@@ -1,0 +1,33 @@
+<div class="register-container">
+  <h2>Register New Admin</h2>
+  <form (ngSubmit)="registerAdmin()" #adminForm="ngForm" class="admin-form">
+    <div class="form-group">
+      <label>👤 Name</label>
+      <input type="text" name="name" [(ngModel)]="newAdmin.name" required />
+    </div>
+    <div class="form-group">
+      <label>📧 Email</label>
+      <input type="email" name="email" [(ngModel)]="newAdmin.email" required />
+    </div>
+    <div class="form-group">
+      <label>🔐 Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="newAdmin.password"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>🎯 Role</label>
+      <select name="role" [(ngModel)]="newAdmin.role" required>
+        <option value="" disabled>Select Role</option>
+        <option value="CLAIMSMANAGER">CLAIMSMANAGER</option>
+        <option value="POLICYMANAGER">POLICYMANAGER</option>
+        <option value="HOSPITALMANAGER">HOSPITALMANAGER</option>
+        <option value="REPORTMANAGER">REPORTMANAGER</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="!adminForm.form.valid">Register</button>
+  </form>
+</div>

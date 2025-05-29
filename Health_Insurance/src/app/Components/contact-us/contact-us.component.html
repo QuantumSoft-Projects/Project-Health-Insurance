@@ -1,0 +1,318 @@
+<br><!-- Slider Section -->
+<section class="contact-carousel-section">
+  <div id="contactPageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor="let item of carouselItems" class="carousel-item" [class.active]="item.active">
+        <img [src]="item.image" class="d-block w-100" [alt]="item.title">
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+          <h1>{{item.title}}</h1>
+          <p>{{item.description}}</p>
+          <a *ngIf="item.buttonText" href="#contact-form" class="btn btn-primary mt-3 px-4 py-2">{{item.buttonText}}</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#contactPageCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#contactPageCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+ 
+ 
+<!-- Insurance Plans Section -->
+<section class="container-fluid py-5 bg-white">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" style="max-width: 800px;">
+      <h4 class="text-primary">Our Best Plans</h4>
+      <h1 class="display-4 mb-4">Tailored Coverage for Every Need</h1>
+    </div>
+   
+    <div class="row g-4">
+      <div *ngFor="let plan of insurancePlans" class="col-lg-4 col-md-6 wow fadeInUp">
+        <div class="plan-card p-4 border rounded bg-light h-100">
+          <div class="icon-box bg-primary-light mb-3">
+            <i class="fas {{plan.icon}} text-primary fa-2x"></i>
+          </div>
+          <h3>{{plan.title}}</h3>
+          <p>{{plan.description}}</p>
+          <ul class="list-unstyled">
+            <li *ngFor="let feature of plan.features" class="mb-2">
+              <i class="fas fa-check-circle text-primary me-2"></i>{{feature}}
+            </li>
+          </ul>
+          <a href="#" class="btn btn-outline-primary mt-3">{{plan.buttonText}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- Contact Form Section -->
+<section class="container-fluid contact bg-light py-5">
+  <div class="container py-5">
+    <div class="text-center mx-auto pb-5 wow fadeInUp" style="max-width: 800px;">
+      <h4 class="text-primary">Get in Touch</h4>
+      <h1 class="display-4 mb-4">We're Here to Help With Your Health Insurance Needs</h1>
+    </div>
+ 
+    <div class="row g-5">
+      <!-- Contact Image -->
+      <div class="col-xl-6 wow fadeInLeft">
+        <div class="contact-img d-flex justify-content-center">
+          <div class="contact-img-inner">
+            <img src="assets/img/contact-img.png" class="img-fluid w-100" alt="Health Insurance Contact Image">
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Contact Form -->
+      <div class="col-xl-6 wow fadeInRight">
+        <div>
+          <h4 class="text-primary">Send Your Message</h4>
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
+                  <label for="name">Your Name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
+                  <label for="email">Your Email</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="tel" class="form-control border-0" id="phone" placeholder="Your Phone">
+                  <label for="phone">Your Phone</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control border-0" id="plan" placeholder="Insurance Plan">
+                  <label for="plan">Insurance Plan Interested In</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
+                  <label for="subject">Subject (e.g., Claims, Policy Info, General Query)</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <textarea class="form-control border-0" placeholder="Leave a message" id="message" style="height: 120px"></textarea>
+                  <label for="message">Your Message</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FAQ Section -->
+<section class="container-fluid py-5 bg-white">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" style="max-width: 800px;">
+      <h4 class="text-primary">Have Questions?</h4>
+      <h1 class="display-4 mb-4">Frequently Asked Questions</h1>
+    </div>
+   
+    <div class="accordion" id="faqAccordion">
+      <div *ngFor="let faq of faqs; let i = index" class="accordion-item border-0 mb-3">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-white shadow-sm rounded" type="button"
+                  data-bs-toggle="collapse" [attr.data-bs-target]="'#faq' + i">
+            {{faq.question}}
+          </button>
+        </h2>
+        <div [id]="'faq' + i" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            {{faq.answer}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- Testimonials Section -->
+<section class="container-fluid py-5 bg-light">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" style="max-width: 800px;">
+      <h4 class="text-primary">Happy Customers</h4>
+      <h1 class="display-4 mb-4">What Our Clients Say</h1>
+    </div>
+   
+    <div class="row g-4">
+      <div *ngFor="let testimonial of testimonials" class="col-lg-6 wow fadeInUp">
+        <div class="testimonial-card p-4 border rounded h-100">
+          <div class="rating mb-3">
+            <i *ngFor="let star of [1,2,3,4,5]"
+               class="fas fa-star"
+               [class.text-warning]="star <= testimonial.rating"
+               [class.text-secondary]="star > testimonial.rating"></i>
+          </div>
+          <p class="mb-4">{{testimonial.text}}</p>
+          <div class="d-flex align-items-center">
+            <img [src]="testimonial.image" class="rounded-circle me-3" width="60" [alt]="testimonial.name">
+            <div>
+              <h6 class="mb-0">{{testimonial.name}}</h6>
+              <small>{{testimonial.location}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- Emergency Section -->
+<section class="container-fluid py-5 bg-warning bg-opacity-10">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6 wow fadeInLeft">
+        <div class="emergency-box bg-white p-4 rounded shadow-sm border-start border-4 border-danger">
+          <h3 class="text-danger mb-3"><i class="fas fa-exclamation-triangle me-2"></i> Emergency Assistance</h3>
+          <p>Need immediate help with hospitalization or medical emergency?</p>
+          <div class="d-flex align-items-center mt-4">
+            <i class="fas fa-phone-alt fa-2x text-danger me-3"></i>
+            <div>
+              <h4 class="mb-0">24/7 Emergency Helpline</h4>
+              <h2 class="text-danger">1800-987-6543</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 wow fadeInRight">
+        <h4 class="text-primary">Critical Support When You Need It</h4>
+        <p>Our dedicated emergency team is available round-the-clock to assist with:</p>
+        <ul class="list-unstyled">
+          <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Cashless hospitalization approval</li>
+          <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Ambulance coordination</li>
+          <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Emergency claim processing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- Resources Section -->
+<section class="container-fluid py-5 bg-white">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" style="max-width: 800px;">
+      <h4 class="text-primary">Resources</h4>
+      <h1 class="display-4 mb-4">Helpful Documents</h1>
+    </div>
+   
+    <div class="row g-4">
+      <div *ngFor="let resource of resources" class="col-md-4 wow fadeInUp">
+        <div class="resource-card p-4 border rounded bg-light h-100">
+          <div class="icon-box bg-primary-light mb-3">
+            <i class="fas {{resource.icon}} text-primary fa-2x"></i>
+          </div>
+          <h5>{{resource.title}}</h5>
+          <p class="mb-4">{{resource.description}}</p>
+          <a href="#" class="btn btn-sm btn-outline-primary">
+            <i class="fas fa-download me-2"></i> {{resource.buttonText}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- Contact Info Section -->
+<section class="container-fluid py-5 bg-light">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div *ngFor="let info of contactInfo" class="col-md-3">
+        <div class="contact-add-item">
+          <i class="fas {{info.icon}} fa-2x text-primary mb-3"></i>
+          <h5>{{info.title}}</h5>
+          <p>{{info.text}}</p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Google Map -->
+    <div class="col-12 pt-5">
+      <iframe
+        class="rounded w-100"
+        height="400"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112091.07339199742!2d77.1024908418969!3d28.628877630257045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd3fd2f1f891%3A0x2eec91b21cd6a3f6!2sConnaught%20Place%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1712730484420!5m2!1sen!2sin"
+      ></iframe>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA Section -->
+<section class="container-fluid py-5 bg-primary text-white">
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="display-5 mb-4">Ready to Protect Your Family's Health?</h2>
+        <p class="mb-4">Get a free consultation with our insurance experts to find the perfect plan.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="tel:18001234567" class="btn btn-light px-4 py-2">
+            <i class="fas fa-phone-alt me-2"></i> Call Now
+          </a>
+          <a href="#contact-form" class="btn btn-outline-light px-4 py-2">
+            <i class="fas fa-envelope me-2"></i> Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+ 
+<!-- Live Chat Widget -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div class="live-chat-btn bg-primary rounded-circle shadow-lg p-3 d-flex align-items-center justify-content-center"
+       style="width: 60px; height: 60px; cursor: pointer;"
+       (click)="toggleChat()">
+    <i class="fas fa-comment-dots fa-lg text-white"></i>
+  </div>
+</div>
+ 
+<div id="chatWidget" class="position-fixed bottom-0 end-0 p-3"
+     [style.display]="showChat ? 'block' : 'none'" style="width: 350px; z-index: 12">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h6 class="mb-0">Chat Support</h6>
+      <button class="btn btn-sm btn-light" (click)="toggleChat()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="card-body" style="height: 300px; overflow-y: auto">
+      <div class="text-center text-muted py-4">
+        <i class="fas fa-robot fa-3x mb-3"></i>
+        <p>Hello! How can we help you today?</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Type your message...">
+        <button class="btn btn-primary" type="button">Send</button>
+      </div>
+    </div>
+  </div>
+</div>  
+ 

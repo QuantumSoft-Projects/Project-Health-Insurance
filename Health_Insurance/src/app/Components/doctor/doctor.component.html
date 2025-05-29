@@ -1,0 +1,52 @@
+<h2>Doctor Management</h2>
+ 
+<form [formGroup]="doctorForm" (ngSubmit)="createDoctor()">
+  <input type="text" placeholder="Name" formControlName="name" />
+  <input
+    type="text"
+    placeholder="Specialization"
+    formControlName="specialization"
+  />
+  <input type="email" placeholder="Email" formControlName="email" />
+  <input type="text" placeholder="Phone" formControlName="phone" />
+  <select formControlName="available">
+    <option [value]="true">Available</option>
+    <option [value]="false">Unavailable</option>
+  </select>
+  <input type="text" placeholder="Hospital ID" formControlName="hospitalId" />
+  <button type="submit">Create Doctor</button>
+</form>
+ 
+<hr />
+ 
+<h3>All Doctors</h3>
+<ul>
+  <li *ngFor="let doctor of doctors">
+    {{ doctor.name }} - {{ doctor.specialization }}
+    <button *ngIf="doctor.doctorId" (click)="getDoctorById(doctor.doctorId)">
+      View
+    </button>
+    <button *ngIf="doctor.doctorId" (click)="populateForm(doctor)">Edit</button>
+    <button *ngIf="doctor.doctorId" (click)="deleteDoctor(doctor.doctorId)">
+      Delete
+    </button>
+  </li>
+</ul>
+ 
+<div *ngIf="selectedDoctor" class="doctor-details-card">
+  <h4>Doctor Details</h4>
+  <ul>
+    <li><strong>Name:</strong> {{ selectedDoctor.name }}</li>
+    <li>
+      <strong>Specialization:</strong> {{ selectedDoctor.specialization }}
+    </li>
+    <li><strong>Email:</strong> {{ selectedDoctor.email }}</li>
+    <li><strong>Phone:</strong> {{ selectedDoctor.phone }}</li>
+    <li>
+      <strong>Available:</strong> {{ selectedDoctor.available ? "Yes" : "No" }}
+    </li>
+    <li>
+      <strong>Hospital ID:</strong> {{ selectedDoctor.hospital?.hospitalId }}
+    </li>
+  </ul>
+  </div>

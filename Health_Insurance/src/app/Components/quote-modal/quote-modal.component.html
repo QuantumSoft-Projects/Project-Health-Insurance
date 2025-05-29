@@ -1,0 +1,215 @@
+<!-- Step 1: Show Form -->
+<div *ngIf="currentStep === 1" class="quote-form-container">
+  <h2> Get a Quote</h2>
+  <button (click)="goToStep(2)">Get Quote</button>
+</div>
+ 
+<!-- Step 2: Basic Details -->
+<div *ngIf="currentStep === 2" class="quote-form-container">
+  <h2>Enter Basic Details</h2>
+  <form #step2Form="ngForm" (ngSubmit)="goToStep(3)">
+    <input type="text" [(ngModel)]="formData.name" name="name" placeholder="Full Name" required />
+    <input type="tel" [(ngModel)]="formData.mobile" name="mobile" placeholder="Mobile Number" required />
+    <input type="email" [(ngModel)]="formData.email" name="email" placeholder="Email ID" required />
+    <input type="text" [(ngModel)]="formData.city" name="city" placeholder="City/Location" required />
+    <button type="button" (click)="goToStep(1)">Previous</button>
+    <button type="submit">Next</button>
+  </form>
+</div>
+ 
+<!-- Step 3: Who to Insure -->
+<div *ngIf="currentStep === 3" class="quote-form-container">
+  <h2> Choose Who You Want to Insure</h2>
+  <div *ngFor="let member of formData.members; let i = index">
+    <select [(ngModel)]="member.relation" name="relation{{i}}">
+      <option value="self">Self</option>
+      <option value="spouse">Spouse</option>
+      <option value="children">Children</option>
+      <option value="parents">Parents</option>
+    </select>
+  </div>
+  <button (click)="addMember()">Add More Members</button>
+  <button type="button" (click)="goToStep(2)">Previous</button>
+  <button (click)="goToStep(4)">Next</button>
+</div>
+ 
+<!-- Step 4: Enter Age -->
+<div *ngIf="currentStep === 4" class="quote-form-container">
+  <h2> Enter Age of Each Member</h2>
+  <div *ngFor="let member of formData.members; let i = index">
+    <label>{{ member.relation | titlecase }}</label>
+    <input type="number" [(ngModel)]="member.age" name="age{{i}}" placeholder="Age" />
+  </div>
+  <button type="button" (click)="goToStep(3)">Previous</button>
+  <button (click)="goToStep(5)">Next</button>
+</div>
+ 
+<!-- Step 5: Gender -->
+<div *ngIf="currentStep === 5" class="quote-form-container">
+  <h2> Select Gender</h2>
+  <div *ngFor="let member of formData.members; let i = index">
+    <label>{{ member.relation | titlecase }}:</label>
+    <select [(ngModel)]="member.gender" name="gender{{i}}">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+  <button type="button" (click)="goToStep(4)">Previous</button>
+  <button (click)="goToStep(6)">Next</button>
+</div>
+ 
+<!-- Step 6: Coverage Amount -->
+<div *ngIf="currentStep === 6" class="quote-form-container">
+  <h2> Choose Coverage Amount</h2>
+  <select [(ngModel)]="formData.sumInsured" name="sumInsured">
+    <option value="500000">₹5 Lakh</option>
+    <option value="1000000">₹10 Lakh</option>
+    <option value="2000000">₹20 Lakh</option>
+  </select>
+  <button type="button" (click)="goToStep(5)">Previous</button>
+  <button (click)="goToStep(7)">Show Plans</button>
+</div>
+ 
+<!-- Step 7: View Plans -->
+<div *ngIf="currentStep === 7" class="card-list">
+  <h2> View Plans and Premium Quotes</h2>
+  <div class="card-grid">
+    <div class="card" *ngFor="let plan of insurancePlans" [class.selected]="selectedPlanId === plan.id" (click)="selectPlan(plan.id)">
+      <h3>{{ plan.title }}</h3>
+      <p>{{ plan.description }}</p>
+      <div class="price">₹{{ plan.price }}</div>
+    </div>
+  </div>
+  <button type="button" (click)="goToStep(6)">Previous</button>
+  <button class="next-btn" [disabled]="!selectedPlanId" (click)="goToStep(8)">Next</button>
+</div>
+ 
+<!-- Step 8: Customize Plan -->
+<div *ngIf="currentStep === 8" class="quote-form-container">
+  <h2> Customize Your Plan</h2>
+  <label><input type="checkbox" [(ngModel)]="formData.addons.maternity" name="maternity" /> Maternity Cover</label>
+  <label><input type="checkbox" [(ngModel)]="formData.addons.opd" name="opd" /> OPD Cover</label>
+  <label><input type="checkbox" [(ngModel)]="formData.addons.hospitalCash" name="hospitalCash" /> Hospital Cash</label>
+  <label><input type="checkbox" [(ngModel)]="formData.addons.criticalIllness" name="criticalIllness" /> Critical Illness Cover</label>
+  <button type="button" (click)="goToStep(7)">Previous</button>
+  <button (click)="goToStep(9)">Next</button>
+</div>
+ 
+<!-- Step 9: Additional Info -->
+<div *ngIf="currentStep === 9" class="quote-form-container">
+  <h2>Additional Info</h2>
+  <textarea [(ngModel)]="formData.healthDetails" name="healthDetails" placeholder="Pre-existing diseases, lifestyle, previous insurance..."></textarea>
+  <button type="button" (click)="goToStep(8)">Previous</button>
+  <button (click)="goToStep(10)">Review Quote</button>
+</div>
+ 
+<!-- Step 10: Review Final Quote -->
+<div *ngIf="currentStep === 10" class="quote-form-container">
+  <h2> Final Quote Summary</h2>
+  <p><strong>Name:</strong> {{ formData.name }}</p>
+  <p><strong>Plan:</strong> {{ getSelectedPlan()?.title }}</p>
+  <p><strong>Premium:</strong> ₹{{ getSelectedPlan()?.price }}</p>
+  <button type="button" (click)="goToStep(9)">Previous</button>
+  <button (click)="goToStep(11)">Buy Now</button>
+  <button (click)="saveQuote()">Save Quote</button>
+</div>
+ 
+<!-- Step 11: Proposal Form -->
+<div *ngIf="currentStep === 11" class="quote-form-container">
+  <h2> Proposal Form</h2>
+  <input type="text" [(ngModel)]="formData.nominee" name="nominee" placeholder="Nominee Name" required />
+  <input type="text" [(ngModel)]="formData.address" name="address" placeholder="Full Address" required />
+  <input type="file" (change)="uploadDocument($event)" />
+  <button type="button" (click)="goToStep(10)">Previous</button>
+  <button (click)="goToStep(12)">Next</button>
+</div>
+<div *ngIf="currentStep === 12" class="quote-form-container payment-summary">
+  <h2>Payment Summary</h2>
+ 
+  <!-- Selected Plan -->
+  <div class="summary-item">
+    <p><strong>Selected Plan:</strong> {{ getSelectedPlan()?.title }}</p>
+    <p><strong>Base Premium:</strong> ₹{{ getSelectedPlan()?.price }}</p>
+  </div>
+ 
+  <!-- Add-ons -->
+  <div *ngIf="formData.addons" class="add-ons">
+    <h4>Add-ons Selected:</h4>
+    <ul>
+      <li *ngIf="formData.addons.maternity">Maternity Cover - ₹1000</li>
+      <li *ngIf="formData.addons.opd">OPD Cover - ₹800</li>
+      <li *ngIf="formData.addons.hospitalCash">Hospital Cash - ₹600</li>
+      <li *ngIf="formData.addons.criticalIllness">Critical Illness Cover - ₹1200</li>
+    </ul>
+  </div>
+ 
+  <!-- GST Calculation -->
+  <div class="gst-calculation">
+    <p><strong>GST (18%):</strong> ₹{{
+      (
+        (getSelectedPlan()?.price || 0) +
+        (formData.addons?.maternity ? 1000 : 0) +
+        (formData.addons?.opd ? 800 : 0) +
+        (formData.addons?.hospitalCash ? 600 : 0) +
+        (formData.addons?.criticalIllness ? 1200 : 0)
+      ) * 0.18 | number:'1.0-0'
+    }}</p>
+  </div>
+ 
+  <!-- Total Premium -->
+  <div class="total-premium">
+    <p><strong>Total Payable (Incl. GST):</strong> ₹{{ calculateTotalPremium() }}</p>
+  </div>
+ 
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button type="button" class="previous-btn" (click)="goToStep(11)">Previous</button>
+    <button class="next-btn" (click)="goToStep(13)">Proceed to Payment</button>
+  </div>
+</div>
+ 
+<!-- Step 13: Payment -->
+<div *ngIf="currentStep === 13" class="quote-form-container">
+  <h2>Payment</h2>
+ 
+  <div class="payment-buttons">
+    <button (click)="selectPaymentMethod('card')">Pay by Card</button>
+    <button (click)="selectPaymentMethod('upi')">Pay by UPI</button>
+    <button (click)="selectPaymentMethod('netbanking')">Pay by Net Banking</button>
+  </div>
+ 
+  <!-- CARD PAYMENT FORM -->
+  <div *ngIf="paymentMethod === 'card'" class="payment-form">
+    <h3>Enter Card Details</h3>
+    <input type="text" [(ngModel)]="cardDetails.cardNumber" placeholder="Card Number">
+    <input type="text" [(ngModel)]="cardDetails.cardName" placeholder="Cardholder Name">
+    <input type="text" [(ngModel)]="cardDetails.expiry" placeholder="MM/YY">
+    <input type="password" [(ngModel)]="cardDetails.cvv" placeholder="CVV">
+    <button (click)="submitPayment('card')">Submit Card Payment</button>
+  </div>
+ 
+  <!-- UPI PAYMENT FORM -->
+  <div *ngIf="paymentMethod === 'upi'" class="payment-form">
+    <h3>Enter UPI ID</h3>
+    <input type="text" [(ngModel)]="upiDetails.upiId" placeholder="example@upi">
+    <button (click)="submitPayment('upi')">Submit UPI Payment</button>
+  </div>
+ 
+  <!-- NET BANKING PAYMENT FORM -->
+  <div *ngIf="paymentMethod === 'netbanking'" class="payment-form">
+    <h3>Select Bank</h3>
+    <select [(ngModel)]="netBankingDetails.bank">
+      <option value="" disabled selected>Select a bank</option>
+      <option value="SBI">State Bank of India</option>
+      <option value="HDFC">HDFC Bank</option>
+      <option value="ICICI">ICICI Bank</option>
+      <option value="AXIS">Axis Bank</option>
+    </select>
+    <button (click)="submitPayment('netbanking')">Submit Net Banking Payment</button>
+  </div>
+ 
+  <button type="button" (click)="goToStep(12)">Previous</button>
+</div>
+ 
+ 
+ 

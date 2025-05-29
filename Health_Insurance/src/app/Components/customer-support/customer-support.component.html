@@ -1,0 +1,78 @@
+<div class="support-page">
+  <h1>Customer Support</h1>
+
+  <!-- Support Form Section -->
+  <section class="support-form">
+    <h2>Submit Your Query</h2>
+    <form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
+      <label for="name">Name</label>
+      <input type="text" id="name" formControlName="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" required />
+
+      <label for="policy">Policy Number (Optional)</label>
+      <input type="text" id="policy" formControlName="policy" />
+
+      <label for="query-type">Query Type</label>
+      <select id="query-type" formControlName="queryType">
+        <option value="general">General Inquiry</option>
+        <option value="claims">Claims</option>
+        <option value="coverage">Coverage Questions</option>
+        <option value="billing">Billing/Payments</option>
+        <option value="Login Issue">Login Issue</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" formControlName="message" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div *ngIf="submittedTicketId" class="ticket-id">
+      <p><strong>Your Ticket ID:</strong> {{ submittedTicketId }}</p>
+    </div>
+  </section>
+
+ <!-- admin-section.component.html snippet -->
+<div *ngIf="isAdmin" class="admin-controls mt-5">
+  <h3>Admin Controls</h3>
+
+  <!-- Assign Ticket -->
+  <div class="assign-ticket mb-4">
+    <h4>Assign Ticket</h4>
+    <input type="number" [(ngModel)]="assignTicketId" placeholder="Ticket ID" class="form-control mb-2">
+    <input type="text" [(ngModel)]="assignedTo" placeholder="Agent Name" class="form-control mb-2">
+    <button (click)="assignTicketToAgent()" class="btn btn-primary">Assign Ticket</button>
+  </div>
+
+  <!-- Update Status -->
+  <div class="update-status mb-4">
+    <h4>Update Ticket Status</h4>
+    <input type="number" [(ngModel)]="statusTicketId" placeholder="Ticket ID" class="form-control mb-2">
+    <select [(ngModel)]="newStatus" class="form-control mb-2">
+      <option value="">Select Status</option>
+      <option value="OPEN">OPEN</option>
+      <option value="IN_PROGRESS">IN_PROGRESS</option>
+      <option value="RESOLVED">RESOLVED</option>
+      <option value="CLOSED">CLOSED</option>
+    </select>
+    <button (click)="updateTicketStatus()" class="btn btn-success">Update Status</button>
+  </div>
+
+  <!-- Admin Fetch Button -->
+  <div class="mb-3">
+    <button (click)="fetchTicketsByAdmin()" class="btn btn-info">Fetch All Tickets (Admin)</button>
+  </div>
+
+  <!-- Ticket Display -->
+  <div *ngIf="tickets.length > 0">
+    <h5>All Tickets:</h5>
+    <ul>
+      <li *ngFor="let ticket of tickets">
+        {{ ticket.issueType }} - {{ ticket.status }}
+      </li>
+    </ul>
+  </div>
+</div>
+

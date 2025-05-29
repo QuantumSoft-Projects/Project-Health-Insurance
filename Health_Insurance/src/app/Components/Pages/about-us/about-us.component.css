@@ -1,0 +1,580 @@
+/* ======================
+   General Styling
+====================== */
+* {
+    scroll-behavior: smooth;
+  }
+   
+  .text-primary {
+    color: #0062cc !important;
+  }
+   
+  .bg-light {
+    background-color: #f4f7fa !important;
+  }
+   
+  .btn-primary {
+    background-color: #0062cc;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+   
+  .btn-primary:hover {
+    background-color: #004a9f;
+    transform: translateY(-2px);
+  }
+   
+  /* ============================
+     Super Stylish About Section
+  ============================= */
+  .about-item-content {
+    position: relative;
+    padding: 40px 35px 40px 80px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+    text-align: left;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    border-left: 8px solid transparent;
+  }
+   
+  /* Shimmer border animation */
+  .about-item-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 6px;
+    background: linear-gradient(to bottom, #007bff, #00c6ff);
+    animation: shimmer 3s linear infinite;
+    border-radius: 20px 0 0 20px;
+  }
+   
+  @keyframes shimmer {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 100%;
+    }
+  }
+   
+  .about-item-content:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0, 123, 255, 0.15);
+  }
+   
+  /* Gradient Glow on Hover */
+  .about-item-content::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.06), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 0;
+  }
+   
+  .about-item-content:hover::after {
+    opacity: 1;
+  }
+   
+  /* Heading & Paragraph */
+  .about-item-content h4,
+  .about-item-content h5 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0056b3;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+   
+  .about-item-content p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+   
+  /* Optional: Icon Style (if you include one inside the div) */
+  .about-item-icon {
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    font-size: 28px;
+    color: #007bff;
+    z-index: 2;
+  }
+   
+   
+   
+   
+   
+   
+  /* ======================
+     Counter Section – Enhanced with Extra Effects
+  ====================== */
+  .counter-item {
+    position: relative;
+    padding: 50px 30px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff9e6, #ffe6e6);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+   
+  /* Dynamic outer glow using a blurred gradient */
+  .counter-item::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, #f39c12, #f1c40f, #e74c3c);
+    z-index: 0;
+    opacity: 0;
+    border-radius: inherit;
+    filter: blur(10px);
+    transition: opacity 0.3s ease-in-out;
+  }
+   
+  .counter-item:hover::before {
+    opacity: 1;
+  }
+   
+  /* Secondary glow effect for a pulsating touch */
+  .counter-item::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
+    z-index: 0;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity 0.4s ease-in-out;
+  }
+   
+  .counter-item:hover::after {
+    opacity: 1;
+    animation: glow-pulse 2s infinite;
+  }
+   
+  /* Pulse animation keyframes */
+  @keyframes glow-pulse {
+    0% {
+      transform: scale(0.95);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(0.95);
+    }
+  }
+   
+  /* Ensure child elements stay above the effects */
+  .counter-item > * {
+    position: relative;
+    z-index: 1;
+  }
+   
+  /* Number styling */
+  .counter-item h1 {
+    font-size: 60px;
+    font-weight: 900;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    transition: transform 0.3s ease-in-out;
+  }
+   
+  /* Label styling */
+  .counter-item p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+  }
+   
+  /* Enhanced hover effect with lift, scale, and gentle rotation */
+  .counter-item:hover {
+    transform: translateY(-8px) scale(1.03) rotate(0.5deg);
+    background: linear-gradient(135deg, #ffffff, #fdfdfd);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+   
+  .counter-item:hover h1 {
+    transform: scale(1.15);
+  }
+   
+   
+   
+   
+   
+   
+   
+  /* ======================
+     Premium Feature Card – Final Enhanced Version
+  ====================== */
+  .feature-item {
+    position: relative;
+    padding: 50px 30px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.8));
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+  }
+   
+  /* Subtle light glow ring on hover */
+  .feature-item::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+   
+  .feature-item:hover::before {
+    opacity: 1;
+  }
+   
+  /* On hover, smooth lift and glow */
+  .feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 123, 255, 0.2);
+    background: linear-gradient(135deg, #ffffff, #e7f5ff);
+  }
+   
+  /* Feature Icon Circle */
+  .feature-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, #e6f0ff, #ffffff);
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+  }
+   
+  /* Icon inside the circle */
+  .feature-icon i {
+    font-size: 38px;
+    color: #007bff;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+   
+  .feature-item:hover .feature-icon {
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 123, 255, 0.25);
+  }
+   
+  .feature-item:hover .feature-icon i {
+    color: #0056b3;
+    transform: rotate(6deg) scale(1.1);
+  }
+   
+  /* h1 – Bold and Elegant Big Number (if used in feature/counter) */
+  .feature-item h1 {
+    font-size: 64px;
+    font-weight: 900;
+    margin-bottom: 14px;
+    color: #007bff;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 123, 255, 0.2);
+    transition: transform 0.4s ease, text-shadow 0.3s ease;
+  }
+   
+  .feature-item:hover h1 {
+    transform: scale(1.08);
+    text-shadow: 2px 2px 6px rgba(0, 123, 255, 0.25);
+  }
+   
+  /* h4 – Gradient, Strong Typography */
+  .feature-item h4 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #0056b3, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    transition: letter-spacing 0.3s ease, transform 0.3s ease;
+  }
+   
+  .feature-item:hover h4 {
+    letter-spacing: 1px;
+    transform: scale(1.03);
+  }
+   
+  /* p – Soft, clean readable text */
+  .feature-item p {
+    font-size: 17px;
+    color: #333;
+    line-height: 1.8;
+    opacity: 0.92;
+    margin: 0 auto;
+    max-width: 280px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+   
+  .feature-item:hover p {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+   
+   
+   
+   
+   
+  /* ======================
+     FAQ Accordion Section – Premium Glass Style
+  ====================== */
+  .accordion-item {
+    border: none;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+   
+  .accordion-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at top left, rgba(0, 123, 255, 0.08), transparent 70%);
+    opacity: 0.6;
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(15deg);
+  }
+   
+  .accordion-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 38px rgba(0, 123, 255, 0.15);
+  }
+   
+  .accordion-button {
+    font-weight: 700;
+    font-size: 18px;
+    padding: 20px 24px;
+    border-radius: 18px !important;
+    background-color: transparent;
+    color: #003366;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease-in-out;
+    box-shadow: none;
+  }
+   
+  .accordion-button:hover {
+    background-color: rgba(0, 123, 255, 0.06);
+    color: #0056b3;
+  }
+   
+  .accordion-button:not(.collapsed) {
+    background: linear-gradient(90deg, #e4f2ff, #d4ecff);
+    color: #007bff;
+    box-shadow: inset 0 -1px 0 rgba(0, 123, 255, 0.1);
+  }
+   
+  .accordion-button::after {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+   
+  .accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+    color: #007bff;
+  }
+   
+  .accordion-body {
+    padding: 22px 28px;
+    font-size: 16px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.85);
+    border-top: 1px solid #cfe7ff;
+    line-height: 1.75;
+    animation: fadeUp 0.4s ease-in-out;
+    position: relative;
+    z-index: 1;
+  }
+   
+  /* Subtle fade-in animation */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+   
+  /* ======================
+     Team Section – Elegant & Interactive
+  ====================== */
+  .team-item {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #f0f8ff);
+    box-shadow: 0 12px 30px rgba(0, 123, 255, 0.08);
+    transition: all 0.4s ease-in-out;
+    text-align: center;
+    padding-bottom: 0;
+  }
+   
+  .team-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 123, 255, 0.15);
+  }
+   
+  /* ======================
+     Team Image
+  ====================== */
+  .team-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px 24px 0 0;
+    height: 370px;
+  }
+   
+  .team-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-bottom: 4px solid #007bff;
+  }
+   
+  .team-item:hover .team-img img {
+    transform: scale(1.08);
+  }
+   
+  /* ======================
+     Text Info Under Image
+  ====================== */
+  .team-content {
+    background-color: #3713c8;
+    padding: 20px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+   
+  .team-item:hover .team-content {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+   
+  /* Team Name */
+  .team-content h5 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1d3557;
+    margin: 0 0 6px;
+    transition: color 0.4s ease;
+  }
+   
+  .team-item:hover .team-content h5 {
+    color: #ffffff;
+  }
+   
+  /* Role */
+  .team-content p {
+    font-size: 15px;
+    color: #555;
+    opacity: 0.9;
+    margin-bottom: 0;
+    transition: color 0.4s ease;
+  }
+   
+  .team-item:hover .team-content p {
+    color: #ffffff;
+  }
+   
+  /* ======================
+     Floating Social Icons
+  ====================== */
+  .team-icon {
+    position: absolute;
+    right: 16px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+  }
+   
+  .team-item:hover .team-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+   
+  .team-icon .btn-sm-square {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007bff, #00c6ff)!important;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+   
+  .team-icon .btn-sm-square:hover {
+    transform: scale(1.1) rotate(8deg);
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.4);
+  }
+   
+  /* ======================
+     Shared Transition Smoothing
+  ====================== */
+  .about-item-content,
+  .feature-item,
+  .counter-item,
+  .accordion-button,
+  .team-item {
+    transition: all 0.4s ease-in-out;
+  }
+   

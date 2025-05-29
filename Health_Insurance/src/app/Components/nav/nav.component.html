@@ -1,0 +1,59 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
+  <a routerLink="/" class="navbar-brand d-flex align-items-center">
+    <h1 class="m-0">
+      <img class="img-fluid me-3" src="assets/img/icon/icon-02-primary.png" alt="Logo" />
+      Health Insurance
+    </h1>
+  </a>
+ 
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarCollapse"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
+      <a class="nav-item nav-link" (click)="navigateTo('/home')">Home</a>
+      <a class="nav-item nav-link" (click)="navigateTo('/about-us')">About Us</a>
+      <a class="nav-item nav-link" (click)="navigateTo('/ourServices')">Our Services</a>
+ 
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+        <div class="dropdown-menu bg-light border-0 m-0">
+          <a   class="dropdown-item" (click)="navigateTo('/feature-page')">Features</a>
+          <a   class="dropdown-item" (click)="navigateTo('/appointment-page')">Appointment</a>
+          <a   class="dropdown-item" (click)="navigateTo('/member-page')">Team Members</a>
+          <a   class="dropdown-item" (click)="navigateTo('/testimonial-page')">Testimonial</a>
+          <a  class="dropdown-item" (click)="navigateTo('/404-page')">404 Page</a>
+         
+        </div>
+      </div>
+ 
+     <!-- Contact Us -->
+<a class="nav-item nav-link" (click)="navigateTo('/contactUs')">Contact Us</a>
+ 
+<!-- Login / Signup Button with left margin -->
+<div class="ms-3">
+  <button class="btn btn-outline-primary" (click)="goToLogin()">Login / Signup</button>
+</div>
+ 
+    </div>
+  </div>
+ 
+  <!-- Get A Quote Button -->
+  <button class="btn btn-primary" (click)="openQuoteModal()">Get A Quote</button>
+</nav>
+<!-- Navbar End -->
+ 
+<!-- Quote Modal -->
+<app-quote-modal
+  *ngIf="isQuoteModalOpen"
+  (close)="closeQuoteModal()"
+></app-quote-modal>
+ 
+ 

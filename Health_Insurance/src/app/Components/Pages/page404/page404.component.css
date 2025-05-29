@@ -1,0 +1,40 @@
+.error-page {
+    text-align: center;
+    padding: 100px 20px;
+    background-color:white;
+    color: rgb(39, 144, 255);
+    font-family: Arial, sans-serif;
+  }
+  
+  .error-page h1 {
+    font-size: 120px;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .error-page h2 {
+    font-size: 36px;
+    margin: 10px 0;
+  }
+  
+  .error-page p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .home-btn {
+    padding: 12px 24px;
+    background-color: white; /* Changed to white */
+    color: rgb(39, 144, 255); /* Blue text */
+    border: 2px solid rgb(39, 144, 255); /* Optional border for clarity */
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  .home-btn:hover {
+    background-color: rgb(245, 245, 245); /* Light grey on hover */
+  }
+  

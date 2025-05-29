@@ -1,0 +1,889 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">🩺 Health Admin</div>
+  <div class="nav-actions">
+    <input type="text" placeholder="Search..." class="search" />
+    <img src="https://via.placeholder.com/40" alt="User" class="user-pic" />
+    <button class="logout">Logout</button>
+  </div>
+</nav>
+
+<!-- Layout -->
+<div class="superadmin-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a (click)="setSection('dashboard')">📊 Dashboard</a></li>
+      <li><a (click)="setSection('adminAccounts')">👤 Add Register</a></li>
+      <li><a (click)="setSection('policies')">📄 Manage Policies</a></li>
+      <li><a (click)="setSection('customizedPolicies')">📄 Customized Policies</a></li>
+      <li><a (click)="setSection('claims')">🧾 Manage Claims</a></li>
+      <li><a (click)="setSection('categories')">🏷️ Insurance Categories</a></li>
+      <li><a (click)="setSection('rider')">🛡️Add Rider</a></li>
+
+      <li><a (click)="setSection('hospitals')">🏥 Hospitals & Providers</a></li>
+      <li><a (click)="setSection('doctors')">🏥 Doctors</a></li>
+      <li><a (click)="setSection('transactions')">💰 Transactions</a></li>
+      <li><a (click)="setSection('requests')">🛠️ User Requests</a></li>
+      <li><a (click)="setSection('reports')">📈 Reports</a></li>
+      <li><a (click)="setSection('settings')">⚙️ Settings</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Dashboard -->
+    <div *ngIf="activeSection === 'dashboard'">
+      <h1>Welcome, Super Admin 👑</h1>
+      <div class="cards">
+        <div class="card">👥 Total Users: {{ totalUsers }}</div>
+        <div class="card">📄 Policies Sold: {{ totalPolicies }}</div>
+        <div class="card">💳 Payments: ₹{{ totalPayments }}</div>
+        <div class="card">📊 Reports : {{ totalReports }}</div>
+      </div>
+    </div>
+
+    <!-- Admin Accounts -->
+    <div *ngIf="activeSection === 'adminAccounts'">
+      <h2>Add New Admin</h2>
+      <!-- <form #adminForm="ngForm" (ngSubmit)="createAdmin()" class="admin-form">
+          <div class="form-group"><label>👤 Name</label><input type="text" name="name" [(ngModel)]="newAdmin.name" required /></div>
+          <div class="form-group"><label>📧 Email</label><input type="email" name="email" [(ngModel)]="newAdmin.email" required /></div>
+          <div class="form-group"><label>🔐 Password</label><input type="password" name="password" [(ngModel)]="newAdmin.password" required /></div>
+          <div class="form-group"><label>📞 Phone</label><input type="tel" name="phone" [(ngModel)]="newAdmin.phone" required /></div>
+          <div class="form-group">
+            <label>🎯 Role</label>
+            <select name="role" [(ngModel)]="newAdmin.role" required>
+              <option value="" disabled selected>Select Role</option>
+              <option value="Admin">Admin</option>
+              <option value="SubAdmin">Sub Admin</option>
+            </select>
+          </div>
+          <button type="submit" [disabled]="!adminForm.form.valid">➕ Add Admin</button>
+        </form> -->
+
+      <app-admin-registration></app-admin-registration>
+      <!-- <table class="admin-table">
+          <thead>
+            <tr><th>Name</th><th>Email</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let admin of adminList">
+              <td>{{ admin.name }}</td>
+              <td>{{ admin.email }}</td>
+              <td>
+                <button (click)="editAdmin(admin)">Edit</button>
+                <button (click)="deleteAdmin(admin.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+    </div>
+
+    <!-- Manage Policies -->
+    <div *ngIf="activeSection === 'policies'">
+      <h2>Manage Policies</h2>
+
+      <!-- Add Policy Form -->
+      <form #policyForm="ngForm" (ngSubmit)="addPolicy()" class="admin-form">
+        <div class="form-group">
+          <label>Policy Name</label>
+          <input
+            type="text"
+            [(ngModel)]="newPolicy.policyName"
+            name="policyName"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Policy Type</label>
+          <select [(ngModel)]="newPolicy.policyType" name="policyType" required>
+            <option value="HEALTH">Health</option>
+            <option value="LIFE">Life</option>
+            <option value="AUTO">Auto</option>
+            <option value="HOME">Home</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            [(ngModel)]="newPolicy.description"
+            name="description"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Coverage Amount (₹)</label>
+          <input
+            type="number"
+            [(ngModel)]="newPolicy.coverageAmount"
+            name="coverageAmount"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Premium (₹)</label>
+          <input
+            type="number"
+            [(ngModel)]="newPolicy.premium"
+            name="premium"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Premium Plan</label>
+          <select
+            [(ngModel)]="newPolicy.premiumPlan"
+            name="premiumPlan"
+            required
+          >
+            <option value="MONTHLY">Monthly</option>
+            <option value="QUARTERLY">Quarterly</option>
+            <option value="HALF_YEARLY">Half Yearly</option>
+            <option value="ANNUALLY">Annually</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Term Duration (years)</label>
+          <input
+            type="number"
+            [(ngModel)]="newPolicy.termDuration"
+            name="termDuration"
+            required
+          />
+        </div>
+
+        <button type="submit" [disabled]="!policyForm.valid">
+          ➕ Add Policy
+        </button>
+      </form>
+
+      <!-- Edit Form -->
+      <div *ngIf="selectedPolicy">
+        <h3>Edit Policy</h3>
+        <form (ngSubmit)="updatePolicy()">
+          <input
+            [(ngModel)]="selectedPolicy.policyName"
+            name="policyName"
+            required
+            placeholder="Policy Name"
+          />
+          <input
+            [(ngModel)]="selectedPolicy.policyType"
+            name="policyType"
+            required
+            placeholder="Policy Type"
+          />
+          <textarea
+            [(ngModel)]="selectedPolicy.description"
+            name="description"
+            placeholder="Description"
+          ></textarea>
+          <input
+            type="number"
+            [(ngModel)]="selectedPolicy.coverageAmount"
+            name="coverageAmount"
+            placeholder="Coverage Amount"
+          />
+          <input
+            type="number"
+            [(ngModel)]="selectedPolicy.premium"
+            name="premium"
+            placeholder="Premium"
+          />
+          <select [(ngModel)]="selectedPolicy.premiumPlan" name="premiumPlan">
+            <option value="MONTHLY">Monthly</option>
+            <option value="QUARTERLY">Quarterly</option>
+            <option value="YEARLY">Yearly</option>
+          </select>
+          <input
+            type="number"
+            [(ngModel)]="selectedPolicy.termDuration"
+            name="termDuration"
+            placeholder="Term Duration (months)"
+          />
+
+          <button type="submit">Update Policy</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </div>
+
+      <!-- Policy List -->
+      <h3>Existing Policies</h3>
+      <table class="admin-table" *ngIf="policies.length > 0">
+        <thead>
+          <tr>
+            <th>Policy Name</th>
+            <th>Type</th>
+            <th>Coverage</th>
+            <th>Premium</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let policy of policies">
+            <td>{{ policy.policyName }}</td>
+            <td>{{ policy.policyType }}</td>
+            <td>₹{{ policy.coverageAmount }}</td>
+            <td>₹{{ policy.premium }}</td>
+            <td>
+              <button (click)="editPolicy(policy)">✏️ Edit</button>
+              <button (click)="deletePolicy(policy.policyId)">🗑️ Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="policies.length === 0" class="no-policies">
+        <p>No policies found. Add your first policy above.</p>
+      </div>
+    </div>
+
+    <!-- customizedPolicies -->
+
+    <div *ngIf="activeSection === 'customizedPolicies'">
+     
+      <div class="container mt-4">
+        <h2>Customize Policy</h2>
+      
+        <form [formGroup]="customForm" (ngSubmit)="submitCustomizedPolicy()">
+          <div class="form-group">
+            <label for="premiumPlan">Select Premium Plan</label>
+            <select class="form-control" formControlName="premiumPlan" id="premiumPlan">
+              <option value="MONTHLY">Monthly</option>
+              <option value="QUARTERLY">Quarterly</option>
+              <option value="HALF_YEARLY">Half-Yearly</option>
+              <option value="YEARLY">Yearly</option>
+            </select>
+          </div>
+      
+          <button type="submit" class="btn btn-success mt-3">Customize Policy</button>
+        </form>
+      
+        <div *ngIf="customizedPolicyId" class="mt-4">
+          <h4>Add Riders & Add-ons</h4>
+      
+          <div class="form-group">
+            <label>Rider ID:</label>
+            <input type="number" [(ngModel)]="riderId" name="riderId" class="form-control" />
+            <button class="btn btn-primary mt-2" (click)="addRider()">Add Rider</button>
+          </div>
+      
+          <div class="form-group mt-3">
+            <label>Add-On ID:</label>
+            <input type="number" [(ngModel)]="addOnId" name="addOnId" class="form-control" />
+            <button class="btn btn-primary mt-2" (click)="addAddOn()">Add Add-On</button>
+          </div>
+      
+          <div class="mt-3">
+            <button class="btn btn-danger" (click)="markAsExpired()">Mark as Expired</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Manage Claims -->
+    <div *ngIf="activeSection === 'claims'">
+      <h2>Manage Claims</h2>
+      <form (ngSubmit)="addClaim()" class="admin-form">
+        <div class="form-group">
+          <label>User Name</label
+          ><input type="text" [(ngModel)]="claim.user" name="user" required />
+        </div>
+        <div class="form-group">
+          <label>Policy Name</label
+          ><input
+            type="text"
+            [(ngModel)]="claim.policyName"
+            name="policyName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Claim Amount</label
+          ><input
+            type="number"
+            [(ngModel)]="claim.amount"
+            name="amount"
+            required
+          />
+        </div>
+        <button type="submit">Add Claim</button>
+      </form>
+
+      <table class="admin-table" *ngIf="claimList.length > 0">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Policy</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let claim of claimList">
+            <td>{{ claim.user }}</td>
+            <td>{{ claim.policyName }}</td>
+            <td>₹{{ claim.amount }}</td>
+            <td><button (click)="deleteClaim(claim.id)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <!-- Insurance Categories -->
+    <div *ngIf="activeSection === 'categories'">
+      <h2>🏷️ Insurance Categories</h2>
+      <form #categoryForm="ngForm" (ngSubmit)="addCategory()">
+        <div>
+          <label for="name">Category Name:</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="newCategory.name"
+            name="name"
+            required
+            #name="ngModel"
+          />
+          <div *ngIf="name.invalid && name.touched" class="error">
+            Category Name is required.
+          </div>
+        </div>
+        <div>
+          <label for="description">Category Description:</label>
+          <input
+            type="text"
+            id="description"
+            [(ngModel)]="newCategory.description"
+            name="description"
+            required
+            #description="ngModel"
+          />
+          <div *ngIf="description.invalid && description.touched" class="error">
+            Category Description is required.
+          </div>
+        </div>
+        <button type="submit" [disabled]="!categoryForm.form.valid">
+          Add Category
+        </button>
+      </form>
+
+      <table class="admin-table" *ngIf="categoryList.length > 0">
+        <thead>
+          <tr>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categoryList">
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>
+              <button (click)="editCategory(category)">Edit</button>
+              <button (click)="deleteCategory(category.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="categoryList.length === 0">
+        <p>No categories found. Please add one.</p>
+      </div>
+    </div>
+
+     <!-- Rider Section -->
+<div *ngIf="activeSection === 'rider'">
+  <h2>Rider Management</h2>
+ 
+  <!-- Example Form -->
+  <form (ngSubmit)="addRider()" #riderForm="ngForm">
+    <label for="riderName">Rider Name:</label>
+    <input type="text" id="riderName" name="riderName" [(ngModel)]="riderData.name" required />
+    <br />
+ 
+    <label for="riderDescription">Description:</label>
+    <textarea id="riderDescription" name="riderDescription" [(ngModel)]="riderData.description" required></textarea>
+    <br />
+
+    <div class="form-group mb-3">
+      <label for="premiumPerYear">Premium per Year (₹)</label>
+      <input type="number" class="form-control" id="premiumPerYear" name="premiumPerYear" [(ngModel)]="riderData.premiumPerYear" required>
+      </div>
+ 
+    <button type="submit" [disabled]="!riderForm.valid">Add Rider</button>
+  </form>
+ 
+  <!-- List of Riders -->
+  <div *ngIf="riderList.length > 0">
+    <h3>All Riders:</h3>
+    <ul>
+      <li *ngFor="let rider of riderList">{{ rider.name }} - {{ rider.description }}</li>
+    </ul>
+  </div>
+</div>
+
+    <!-- Hospitals & Providers -->
+    <div *ngIf="activeSection === 'hospitals'">
+      <h2>Hospitals & Providers</h2>
+<!-- add-hospital.component.html -->
+<form (ngSubmit)="addHospital()" #f="ngForm" class="p-4 max-w-lg mx-auto space-y-4">
+
+  <h2 class="text-xl font-semibold">Add Hospital</h2>
+
+  <input
+    [(ngModel)]="hospitalData.name"
+    name="name"
+    required
+    placeholder="Name"
+    class="w-full p-2 border rounded"
+  />
+
+  <input
+    [(ngModel)]="hospitalData.address"
+    name="address"
+    required
+    placeholder="Address"
+    class="w-full p-2 border rounded"
+  />
+
+  <div class="grid grid-cols-2 gap-2">
+    <input
+      [(ngModel)]="hospitalData.city"
+      name="city"
+      required
+      placeholder="City"
+      class="p-2 border rounded"
+    />
+    <input
+      [(ngModel)]="hospitalData.state"
+      name="state"
+      required
+      placeholder="State"
+      class="p-2 border rounded"
+    />
+  </div>
+
+  <div class="grid grid-cols-2 gap-2">
+    <input
+      [(ngModel)]="hospitalData.postalCode"
+      name="postalCode"
+      required
+      placeholder="Postal Code"
+      class="p-2 border rounded"
+    />
+    <input
+      [(ngModel)]="hospitalData.contactNumber"
+      name="contactNumber"
+      required
+      placeholder="Contact Number"
+      class="p-2 border rounded"
+    />
+  </div>
+
+  <input
+    type="email"
+    [(ngModel)]="hospitalData.email"
+    name="email"
+    required
+    placeholder="Email"
+    class="w-full p-2 border rounded"
+  />
+
+  <input
+    [(ngModel)]="hospitalData.website"
+    name="website"
+    placeholder="Website"
+    class="w-full p-2 border rounded"
+  />
+
+  <div class="flex gap-4">
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="hospitalData.isNetworkHospital"
+        name="isNetworkHospital"
+      />
+      Network Hospital
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="hospitalData.icuAvailable"
+        name="icuAvailable"
+      />
+      ICU Available
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="hospitalData.isActive"
+        name="isActive"
+      />
+      Active
+    </label>
+  </div>
+
+  <input
+    type="number"
+    [(ngModel)]="hospitalData.availableBeds"
+    name="availableBeds"
+    required
+    placeholder="Available Beds"
+    class="w-full p-2 border rounded"
+  />
+
+  <!-- Specialties -->
+  <div>
+    <div class="flex gap-2 mb-2">
+      <input
+        [(ngModel)]="specialtyInput"
+        name="specialtyInput"
+        placeholder="Add specialty"
+        class="flex-1 p-2 border rounded"
+      />
+      <button type="button" (click)="addSpecialty()" class="px-3 py-1 bg-blue-600 text-white rounded">
+        Add
+      </button>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span
+        *ngFor="let s of hospitalData.specialties"
+        class="px-2 py-1 bg-gray-200 rounded inline-flex items-center"
+      >
+        {{ s }}
+        <button type="button" (click)="removeSpecialty(s)" class="ml-1 font-bold text-red-500">&times;</button>
+      </span>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="!f.form.valid"
+    class="w-full py-2 bg-blue-600 text-white rounded"
+  >
+    Add Hospital
+  </button>
+</form>
+
+
+
+   
+     <!-- hospital.component.html -->
+<div class="p-4 max-w-4xl mx-auto">
+
+  <h2 class="text-2xl font-semibold mb-4">All Hospitals</h2>
+  
+  <!-- Refresh button -->
+  <button
+    (click)="fetchAllHospitals()"
+    class="mb-4 px-4 py-2 bg-blue-600 text-white rounded"
+  >
+    Refresh List
+  </button>
+  
+  <!-- If still loading / empty -->
+  <div *ngIf="hospitals.length === 0" class="text-gray-500">
+    No hospitals found.
+  </div>
+  
+  <!-- Hospital table -->
+  <table *ngIf="hospitals.length > 0" class="min-w-full bg-white rounded shadow">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="px-4 py-2 text-left">ID</th>
+        <th class="px-4 py-2 text-left">Name</th>
+        <th class="px-4 py-2 text-left">City</th>
+        <th class="px-4 py-2 text-left">Beds</th>
+        <th class="px-4 py-2 text-left">Network</th>
+        <th class="px-4 py-2 text-left">ICU</th>
+        <th class="px-4 py-2 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let h of hospitals" class="border-t">
+        <td class="px-4 py-2">{{ h.hospitalId }}</td>
+        <td class="px-4 py-2">{{ h.name }}</td>
+        <td class="px-4 py-2">{{ h.city }}</td>
+        <td class="px-4 py-2">{{ h.availableBeds }}</td>
+        <td class="px-4 py-2">{{ h.isNetworkHospital ? 'Yes' : 'No' }}</td>
+        <td class="px-4 py-2">{{ h.icuAvailable ? 'Yes' : 'No' }}</td>
+        <td class="px-4 py-2 space-x-2">
+          <button (click)="editHospital(h)" class="px-2 py-1 bg-yellow-500 text-white rounded">
+            Edit
+          </button>
+          <button (click)="deleteHospital(h.hospitalId!)" class="px-2 py-1 bg-red-500 text-white rounded">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+    </div>
+
+<!-- Doctors -->
+
+<div *ngIf="activeSection === 'doctors'">
+<app-doctor></app-doctor>
+
+  
+</div>
+
+
+    <!-- Transactions -->
+    <!-- Transactions -->
+    <div *ngIf="activeSection === 'transactions'">
+      <h2>Transactions</h2>
+
+      <!-- Transaction Form -->
+      <form
+        #transactionForm="ngForm"
+        (ngSubmit)="addTransaction()"
+        class="admin-form"
+      >
+        <div class="form-group">
+          <label>Transaction ID</label>
+          <input
+            type="text"
+            name="transactionId"
+            [(ngModel)]="transaction.transactionId"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>User Name</label>
+          <input
+            type="text"
+            name="userName"
+            [(ngModel)]="transaction.userName"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Amount</label>
+          <input
+            type="number"
+            name="amount"
+            [(ngModel)]="transaction.amount"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select name="status" [(ngModel)]="transaction.status" required>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Failed">Failed</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Transaction Date</label>
+          <input
+            type="date"
+            name="transactionDate"
+            [(ngModel)]="transaction.transactionDate"
+            required
+          />
+        </div>
+
+        <button type="submit" [disabled]="!transactionForm.form.valid">
+          Add Transaction
+        </button>
+      </form>
+
+      <!-- Transaction List -->
+      <h3>Transaction History</h3>
+      <table class="admin-table" *ngIf="transactionList.length > 0">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>User Name</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactionList">
+            <td>{{ transaction.transactionId }}</td>
+            <td>{{ transaction.userName }}</td>
+            <td>₹{{ transaction.amount }}</td>
+            <td>{{ transaction.status }}</td>
+            <td>
+              <button (click)="editTransaction(transaction)">Edit</button>
+              <button (click)="deleteTransaction(transaction.transactionId)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="transactionList.length === 0">
+        <p>No transactions found. Please add one.</p>
+      </div>
+    </div>
+
+    <!-- User Requests -->
+    <div *ngIf="activeSection === 'requests'">
+      <h2>User Requests / Support</h2>
+      <form #userRequestForm="ngForm" (ngSubmit)="addUserRequest()">
+        <div class="form-group">
+          <label>User Name</label>
+          <input
+            type="text"
+            name="userName"
+            [(ngModel)]="userRequest.userName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Request Type</label>
+          <select
+            name="requestType"
+            [(ngModel)]="userRequest.requestType"
+            required
+          >
+            <option value="Complaint">Complaint</option>
+            <option value="Inquiry">Inquiry</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Request Description</label>
+          <textarea
+            name="description"
+            [(ngModel)]="userRequest.description"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" [disabled]="!userRequestForm.form.valid">
+          Submit Request
+        </button>
+      </form>
+
+      <h3>User Request List</h3>
+      <table class="admin-table" *ngIf="userRequestList.length > 0">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Request Type</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of userRequestList">
+            <td>{{ request.userName }}</td>
+            <td>{{ request.requestType }}</td>
+            <td>{{ request.status }}</td>
+            <td>
+              <button (click)="editUserRequest(request)">Edit</button>
+              <button (click)="deleteUserRequest(request.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="userRequestList.length === 0">
+        <p>No user requests found.</p>
+      </div>
+    </div>
+
+    <!-- Reports -->
+    <div *ngIf="activeSection === 'reports'">
+      <h2>Reports & Analytics</h2>
+      <form #reportForm="ngForm" (ngSubmit)="generateReport()">
+        <div class="form-group">
+          <label>Select Report Type</label>
+          <select name="reportType" [(ngModel)]="report.type" required>
+            <option value="User">User Report</option>
+            <option value="Policy">Policy Report</option>
+            <option value="Claim">Claim Report</option>
+          </select>
+        </div>
+        <button type="submit" [disabled]="!reportForm.form.valid">
+          Generate Report
+        </button>
+      </form>
+
+      <h3>Generated Reports</h3>
+      <table class="admin-table" *ngIf="reportList.length > 0">
+        <thead>
+          <tr>
+            <th>Report Type</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reportList">
+            <td>{{ report.type }}</td>
+            <td>{{ report.date }}</td>
+            <td>
+              <button (click)="downloadReport(report.id)">Download</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="reportList.length === 0"><p>No reports found.</p></div>
+    </div>
+
+    <!-- Settings -->
+    <div *ngIf="activeSection === 'settings'">
+      <h2>Settings</h2>
+      <form #settingsForm="ngForm" (ngSubmit)="updateSettings()">
+        <div class="form-group">
+          <label>System Name</label>
+          <input
+            type="text"
+            name="systemName"
+            [(ngModel)]="settings.systemName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Support Email</label>
+          <input
+            type="email"
+            name="supportEmail"
+            [(ngModel)]="settings.supportEmail"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Maintenance Mode</label>
+          <select
+            name="maintenanceMode"
+            [(ngModel)]="settings.maintenanceMode"
+            required
+          >
+            <option value="On">On</option>
+            <option value="Off">Off</option>
+          </select>
+        </div>
+        <button type="submit" [disabled]="!settingsForm.form.valid">
+          Update Settings
+        </button>
+      </form>
+    </div>
+  </main>
+</div>

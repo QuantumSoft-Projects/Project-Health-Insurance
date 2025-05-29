@@ -1,0 +1,7 @@
+.form-floating label {
+    padding-left: 0.75rem;
+  }
+  input.form-control, textarea.form-control {
+    padding: 1rem;
+  }
+  

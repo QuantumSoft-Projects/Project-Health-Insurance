@@ -1,0 +1,39 @@
+.feature-card {
+    background: #fff;
+    border-radius: 16px;
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .feature-card img {
+    width: 60px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card h5 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-card:hover img {
+    transform: scale(1.1);
+  }
+  
+  .object-fit-cover {
+    object-fit: cover;
+  }
+  
